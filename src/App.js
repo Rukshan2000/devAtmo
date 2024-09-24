@@ -1,25 +1,31 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
+import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
+import Form from './components/dataForm.jsx';
+import DataFormDisplay from './components/DataFormDisplay'; // Assuming DataFormDisplay is created to display the submitted data
 
-function App() {
+const App = () => {
+  const [formData, setFormData] = useState(null);
+
+  // Function to handle form submission
+  const handleFormSubmit = (data) => {
+    setFormData(data); // Store form data
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        {/* Route for the form */}
+        <Route path="/" element={<Form onSubmit={handleFormSubmit} />} />
+
+        {/* Route to display submitted form data */}
+        {formData && <Route path="/display" element={<DataFormDisplay data={formData} />} />}
+        
+        {/* Redirect to the form if no data */}
+        <Route path="/display" element={<Navigate to="/" />} />
+      </Routes>
+    </BrowserRouter>
   );
-}
+};
 
 export default App;
