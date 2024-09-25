@@ -399,7 +399,7 @@ function DataForm({ onSubmit }) {
 
             <h2 className="mb-6 text-3xl font-bold text-gray-800">File Uploads / 試料</h2>
 
-            <div className="grid grid-cols-1 gap-4 mb-4 md:grid-cols-3">
+            <div className="grid grid-cols-1 gap-4 mb-4 md:grid-cols-4">
 
 <div className="mb-4">
     <label className="block mb-2 font-bold">Personal Photo</label>
