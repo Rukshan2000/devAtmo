@@ -146,7 +146,7 @@ const chartOptions = {
 
                 <div className="mb-8">
                     <button 
-                        onClick={() => navigate('/form')}
+                        onClick={() => navigate('/')}
                         className="px-4 py-2 text-white bg-blue-600 rounded-md hover:bg-blue-700"
                     >
                         Add New User
