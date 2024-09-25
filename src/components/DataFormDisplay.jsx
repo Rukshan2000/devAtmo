@@ -1,7 +1,10 @@
 import React, { useRef } from 'react';
 import { useReactToPrint } from 'react-to-print';
+import { useLocation } from 'react-router-dom';
 
-function DataFormDisplay({ data }) {
+function DataFormDisplay() {
+    const location = useLocation();
+    const { user } = location.state; // Access user data passed via navigate
     const formRef = useRef();
 
     const handlePrint = useReactToPrint({
@@ -16,36 +19,36 @@ function DataFormDisplay({ data }) {
                 {/* General Info Section */}
                 <div className="mb-4">
                     <h3 className="text-lg font-bold">General Information</h3>
-                    <p><strong>Full Name:</strong> {data.fullName}</p>
-                    <p><strong>Date of Birth:</strong> {data.dateOfBirth}</p>
-                    <p><strong>Address:</strong> {data.address}</p>
-                    <p><strong>Status of Residence:</strong> {data.statusOfResidence}</p>
-                    <p><strong>Sex:</strong> {data.sex}</p>
-                    <p><strong>Nationality:</strong> {data.nationality}</p>
-                    <p><strong>Mobile:</strong> {data.mobile}</p>
-                    <p><strong>Email:</strong> {data.email}</p>
+                    <p><strong>Full Name:</strong> {user.fullName}</p>
+                    <p><strong>Date of Birth:</strong> {user.dateOfBirth}</p>
+                    <p><strong>Address:</strong> {user.address}</p>
+                    <p><strong>Status of Residence:</strong> {user.statusOfResidence}</p>
+                    <p><strong>Sex:</strong> {user.sex}</p>
+                    <p><strong>Nationality:</strong> {user.nationality}</p>
+                    <p><strong>Mobile:</strong> {user.mobile}</p>
+                    <p><strong>Email:</strong> {user.email}</p>
                 </div>
 
-                {/* Personal Info */}
+                {/* Personal Info Section */}
                 <div className="mb-4">
                     <h3 className="text-lg font-bold">Personal Information</h3>
-                    <p><strong>Marital Status:</strong> {data.maritalStatus}</p>
-                    <p><strong>Children:</strong> {data.children}</p>
-                    <p><strong>Blood Type:</strong> {data.bloodType}</p>
-                    <p><strong>Comfortable Hand:</strong> {data.comfortableHand}</p>
-                    <p><strong>Height:</strong> {data.height} cm</p>
-                    <p><strong>Weight:</strong> {data.weight} kg</p>
-                    <p><strong>Smoking:</strong> {data.smoke}</p>
-                    <p><strong>Alcohol:</strong> {data.alcohol}</p>
-                    <p><strong>Tattoo:</strong> {data.tattoo}</p>
-                    <p><strong>Color Blindness:</strong> {data.colorBlindness}</p>
-                    <p><strong>Been to Japan:</strong> {data.beenToJapan}</p>
+                    <p><strong>Marital Status:</strong> {user.maritalStatus}</p>
+                    <p><strong>Children:</strong> {user.children}</p>
+                    <p><strong>Blood Type:</strong> {user.bloodType}</p>
+                    <p><strong>Comfortable Hand:</strong> {user.comfortableHand}</p>
+                    <p><strong>Height:</strong> {user.height} cm</p>
+                    <p><strong>Weight:</strong> {user.weight} kg</p>
+                    <p><strong>Smoking:</strong> {user.smoke}</p>
+                    <p><strong>Alcohol:</strong> {user.alcohol}</p>
+                    <p><strong>Tattoo:</strong> {user.tattoo}</p>
+                    <p><strong>Color Blindness:</strong> {user.colorBlindness}</p>
+                    <p><strong>Been to Japan:</strong> {user.beenToJapan}</p>
                 </div>
 
                 {/* Education Section */}
                 <div className="mb-4">
                     <h3 className="text-lg font-bold">Education Background</h3>
-                    {data.education.map((item, index) => (
+                    {user.education?.map((item, index) => (
                         <div key={index} className="mb-2">
                             <p><strong>Year:</strong> {item.year}</p>
                             <p><strong>Month:</strong> {item.month}</p>
@@ -57,7 +60,7 @@ function DataFormDisplay({ data }) {
                 {/* Work History Section */}
                 <div className="mb-4">
                     <h3 className="text-lg font-bold">Work History</h3>
-                    {data.workHistory.map((item, index) => (
+                    {user.workHistory?.map((item, index) => (
                         <div key={index} className="mb-2">
                             <p><strong>Year:</strong> {item.year}</p>
                             <p><strong>Month:</strong> {item.month}</p>
@@ -71,7 +74,7 @@ function DataFormDisplay({ data }) {
                 {/* Qualifications Section */}
                 <div className="mb-4">
                     <h3 className="text-lg font-bold">Qualifications / Licenses / Certifications / Awards</h3>
-                    {data.qualifications.map((item, index) => (
+                    {user.qualifications?.map((item, index) => (
                         <div key={index} className="mb-2">
                             <p><strong>Year:</strong> {item.year}</p>
                             <p><strong>Month:</strong> {item.month}</p>
@@ -80,21 +83,10 @@ function DataFormDisplay({ data }) {
                     ))}
                 </div>
 
-                {/* File Uploads */}
-                <div className="mb-4">
-                    <h3 className="text-lg font-bold">Uploaded Documents</h3>
-                    <p><strong>Personal Photo:</strong> {data.personalPhoto ? "Uploaded" : "Not Uploaded"}</p>
-                    <p><strong>CV:</strong> {data.cv ? "Uploaded" : "Not Uploaded"}</p>
-                    <p><strong>Interview:</strong> {data.interview ? "Uploaded" : "Not Uploaded"}</p>
-                    <p><strong>PT Test:</strong> {data.ptTest ? "Uploaded" : "Not Uploaded"}</p>
-                    <p><strong>PT Test Certificate:</strong> {data.ptTestCertificate ? "Uploaded" : "Not Uploaded"}</p>
-                    <p><strong>Passport Copy:</strong> {data.passportCopy ? "Uploaded" : "Not Uploaded"}</p>
-                    <p><strong>Driver License:</strong> {data.driverLicense ? "Uploaded" : "Not Uploaded"}</p>
-                    <p><strong>Qualification - Education:</strong> {data.qualificationEducation ? "Uploaded" : "Not Uploaded"}</p>
-                    <p><strong>Qualification - Working:</strong> {data.qualificationWorking ? "Uploaded" : "Not Uploaded"}</p>
-                </div>
+                <button onClick={handlePrint} className="px-4 py-2 mt-4 text-white bg-blue-500 rounded">
+                    Print this data
+                </button>
             </div>
-
         </div>
     );
 }

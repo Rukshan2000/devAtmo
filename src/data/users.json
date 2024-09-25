@@ -1,0 +1,164 @@
+[
+    {
+        "userId": 1,
+        "fullName": "John Doe",
+        "dateOfBirth": "1990-01-01",
+        "address": "123 Main St, City, Country",
+        "statusOfResidence": "Permanent Resident",
+        "sex": "Male",
+        "nationality": "Country",
+        "mobile": "1234567890",
+        "email": "john.doe@example.com",
+        "maritalStatus": "Single",
+        "children": "0",
+        "bloodType": "O+",
+        "comfortableHand": "Right",
+        "height": "175",
+        "weight": "70",
+        "smoke": "No",
+        "alcohol": "Yes",
+        "tattoo": "No",
+        "colorBlindness": "No",
+        "beenToJapan": "No",
+        "education": [
+            {
+                "year": "2010",
+                "month": "June",
+                "background": "Bachelor of Science"
+            }
+        ],
+        "workHistory": [
+            {
+                "year": "2015",
+                "month": "January",
+                "companyName": "Tech Corp",
+                "occupation": "Software Engineer",
+                "location": "City"
+            }
+        ],
+        "qualifications": [
+            {
+                "year": "2012",
+                "month": "June",
+                "qualification": "Certified Professional"
+            }
+        ],
+        "personalPhoto": null,
+        "cv": null,
+        "interview": null,
+        "ptTest": null,
+        "ptTestCertificate": null,
+        "passportCopy": null,
+        "driverLicense": null,
+        "qualificationEducation": null,
+        "qualificationWorking": null
+    },
+    {
+        "userId": 2,
+        "fullName": "Jane Smith",
+        "dateOfBirth": "1985-05-15",
+        "address": "456 Elm St, City, Country",
+        "statusOfResidence": "Temporary Resident",
+        "sex": "Female",
+        "nationality": "Country",
+        "mobile": "0987654321",
+        "email": "jane.smith@example.com",
+        "maritalStatus": "Married",
+        "children": "2",
+        "bloodType": "A+",
+        "comfortableHand": "Left",
+        "height": "165",
+        "weight": "60",
+        "smoke": "No",
+        "alcohol": "No",
+        "tattoo": "Yes",
+        "colorBlindness": "No",
+        "beenToJapan": "Yes",
+        "education": [
+            {
+                "year": "2008",
+                "month": "May",
+                "background": "Master of Arts"
+            }
+        ],
+        "workHistory": [
+            {
+                "year": "2010",
+                "month": "March",
+                "companyName": "Design Studio",
+                "occupation": "Graphic Designer",
+                "location": "City"
+            }
+        ],
+        "qualifications": [
+            {
+                "year": "2007",
+                "month": "July",
+                "qualification": "Certified Graphic Designer"
+            }
+        ],
+        "personalPhoto": null,
+        "cv": null,
+        "interview": null,
+        "ptTest": null,
+        "ptTestCertificate": null,
+        "passportCopy": null,
+        "driverLicense": null,
+        "qualificationEducation": null,
+        "qualificationWorking": null
+    },
+    {
+        "userId": 3,
+        "fullName": "Michael Johnson",
+        "dateOfBirth": "1988-11-22",
+        "address": "789 Oak St, City, Country",
+        "statusOfResidence": "Permanent Resident",
+        "sex": "Male",
+        "nationality": "Country",
+        "mobile": "5551234567",
+        "email": "michael.johnson@example.com",
+        "maritalStatus": "Single",
+        "children": "0",
+        "bloodType": "B-",
+        "comfortableHand": "Right",
+        "height": "180",
+        "weight": "75",
+        "smoke": "Yes",
+        "alcohol": "Yes",
+        "tattoo": "No",
+        "colorBlindness": "Yes",
+        "beenToJapan": "No",
+        "education": [
+            {
+                "year": "2009",
+                "month": "August",
+                "background": "Bachelor of Arts"
+            }
+        ],
+        "workHistory": [
+            {
+                "year": "2016",
+                "month": "April",
+                "companyName": "Finance Inc.",
+                "occupation": "Financial Analyst",
+                "location": "City"
+            }
+        ],
+        "qualifications": [
+            {
+                "year": "2010",
+                "month": "February",
+                "qualification": "Certified Financial Analyst"
+            }
+        ],
+        "personalPhoto": null,
+        "cv": null,
+        "interview": null,
+        "ptTest": null,
+        "ptTestCertificate": null,
+        "passportCopy": null,
+        "driverLicense": null,
+        "qualificationEducation": null,
+        "qualificationWorking": null
+    }
+]

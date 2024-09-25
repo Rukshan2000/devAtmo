@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 import './App.css';
 import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
 import Form from './components/dataForm.jsx';
-import DataFormDisplay from './components/DataFormDisplay'; // Assuming DataFormDisplay is created to display the submitted data
-
+import EditForm from './components/EditForm.jsx';
+import Login from './pages/LoginPage.jsx';
+import AdminDashboard from './pages/AdminDashboard.jsx';
+import DataFormDisplay from './components/DataFormDisplay'; 
 const App = () => {
   const [formData, setFormData] = useState(null);
 
@@ -17,9 +19,11 @@ const App = () => {
       <Routes>
         {/* Route for the form */}
         <Route path="/" element={<Form onSubmit={handleFormSubmit} />} />
+        <Route path="/login" element={<Login />} /> 
+        <Route path="/editdata" element={<EditForm />} /> 
+        <Route path="/display" element={<DataFormDisplay />} /> 
+        <Route path="/dashboard" element={<AdminDashboard />} />
 
-        {/* Route to display submitted form data */}
-        <Route path="/display" element={formData ? <DataFormDisplay data={formData} /> : <Navigate to="/" />} />
       </Routes>
     </BrowserRouter>
   );
