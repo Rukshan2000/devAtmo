@@ -77,12 +77,16 @@ function DataForm({ onSubmit }) {
 
     return (
         <form onSubmit={handleSubmit} className="p-6 bg-gray-100 rounded-lg shadow-lg">
-            <h2 className="mb-6 text-3xl font-bold text-gray-800">General Info</h2>
+            <h2 className="mb-6 text-3xl font-bold text-gray-800">General Info / 試料</h2>
 
-            {/* General Info */}
+            {/* General Info 試料*/}
             <div className="grid grid-cols-1 gap-4 mb-4 md:grid-cols-2">
                 <div>
                     <label className="block mb-1 font-semibold">Full Name</label>
+                    <input type="text" name="fullName" value={formState.fullName} onChange={handleChange} className="w-full p-3 border rounded-md" />
+                </div>
+                <div>
+                    <label className="block mb-1 font-semibold">試料</label>
                     <input type="text" name="fullName" value={formState.fullName} onChange={handleChange} className="w-full p-3 border rounded-md" />
                 </div>
                 <div>
@@ -90,11 +94,23 @@ function DataForm({ onSubmit }) {
                     <input type="date" name="dateOfBirth" value={formState.dateOfBirth} onChange={handleChange} className="w-full p-3 border rounded-md" />
                 </div>
                 <div>
+                    <label className="block mb-1 font-semibold">試料</label>
+                    <input type="date" name="dateOfBirth" value={formState.dateOfBirth} onChange={handleChange} className="w-full p-3 border rounded-md" />
+                </div>
+                <div>
                     <label className="block mb-1 font-semibold">Address</label>
                     <input type="text" name="address" value={formState.address} onChange={handleChange} className="w-full p-3 border rounded-md" />
                 </div>
                 <div>
+                    <label className="block mb-1 font-semibold">試料</label>
+                    <input type="text" name="address" value={formState.address} onChange={handleChange} className="w-full p-3 border rounded-md" />
+                </div>
+                <div>
                     <label className="block mb-1 font-semibold">Status of Residence</label>
+                    <input type="text" name="statusOfResidence" value={formState.statusOfResidence} onChange={handleChange} className="w-full p-3 border rounded-md" />
+                </div>
+                <div>
+                    <label className="block mb-1 font-semibold">試料</label>
                     <input type="text" name="statusOfResidence" value={formState.statusOfResidence} onChange={handleChange} className="w-full p-3 border rounded-md" />
                 </div>
                 <div>
@@ -107,7 +123,20 @@ function DataForm({ onSubmit }) {
                     </select>
                 </div>
                 <div>
+                    <label className="block mb-1 font-semibold">試料</label>
+                    <select name="sex" value={formState.sex} onChange={handleChange} className="w-full p-3 border rounded-md">
+                        <option value="">試料</option>
+                        <option value="Male">試料</option>
+                        <option value="Female">試料</option>
+                        <option value="Other">試料</option>
+                    </select>
+                </div>
+                <div>
                     <label className="block mb-1 font-semibold">Nationality</label>
+                    <input type="text" name="nationality" value={formState.nationality} onChange={handleChange} className="w-full p-3 border rounded-md" />
+                </div>
+                <div>
+                    <label className="block mb-1 font-semibold">試料</label>
                     <input type="text" name="nationality" value={formState.nationality} onChange={handleChange} className="w-full p-3 border rounded-md" />
                 </div>
                 <div>
@@ -115,7 +144,15 @@ function DataForm({ onSubmit }) {
                     <input type="text" name="mobile" value={formState.mobile} onChange={handleChange} className="w-full p-3 border rounded-md" />
                 </div>
                 <div>
+                    <label className="block mb-1 font-semibold">試料</label>
+                    <input type="text" name="mobile" value={formState.mobile} onChange={handleChange} className="w-full p-3 border rounded-md" />
+                </div>
+                <div>
                     <label className="block mb-1 font-semibold">Email</label>
+                    <input type="email" name="email" value={formState.email} onChange={handleChange} className="w-full p-3 border rounded-md" />
+                </div>
+                <div>
+                    <label className="block mb-1 font-semibold">試料</label>
                     <input type="email" name="email" value={formState.email} onChange={handleChange} className="w-full p-3 border rounded-md" />
                 </div>
             </div>
