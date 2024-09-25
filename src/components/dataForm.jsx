@@ -157,7 +157,7 @@ function DataForm({ onSubmit }) {
                 </div>
             </div>
 
-            <h2 className="mb-6 text-3xl font-bold text-gray-800">Personel Info</h2>
+            <h2 className="mb-6 text-3xl font-bold text-gray-800">Personel Info / 試料</h2>
 
 
             <div className="grid grid-cols-1 gap-4 mb-4 md:grid-cols-2">
@@ -170,14 +170,30 @@ function DataForm({ onSubmit }) {
         <option value="Single">Single</option>
     </select>
 </div>
+<div className="mb-4">
+    <label className="block mb-2 font-bold">試料 / 試料</label>
+    <select name="maritalStatus" value={formState.maritalStatus} onChange={handleChange} className="w-full p-2 border">
+        <option value="">Select Status</option>
+        <option value="Married">試料</option>
+        <option value="Single">試料</option>
+    </select>
+</div>
 
 <div className="mb-4">
     <label className="block mb-2 font-bold">How many children</label>
     <input type="number" name="children" value={formState.children} onChange={handleChange} className="w-full p-2 border" />
 </div>
+<div className="mb-4">
+    <label className="block mb-2 font-bold">試料</label>
+    <input type="number" name="children" value={formState.children} onChange={handleChange} className="w-full p-2 border" />
+</div>
 
 <div className="mb-4">
     <label className="block mb-2 font-bold">Blood Type</label>
+    <input type="text" name="bloodType" value={formState.bloodType} onChange={handleChange} className="w-full p-2 border" />
+</div>
+<div className="mb-4">
+    <label className="block mb-2 font-bold">試料</label>
     <input type="text" name="bloodType" value={formState.bloodType} onChange={handleChange} className="w-full p-2 border" />
 </div>
 
@@ -190,14 +206,30 @@ function DataForm({ onSubmit }) {
         <option value="Both">Both</option>
     </select>
 </div>
+<div className="mb-4">
+    <label className="block mb-2 font-bold">試料</label>
+    <select name="comfortableHand" value={formState.comfortableHand} onChange={handleChange} className="w-full p-2 border">
+        <option value="">Select Hand</option>
+        <option value="Left">試料</option>
+        <option value="Right">試料</option>
+        <option value="Both">試料</option>
+    </select>
+</div>
 
 <div className="mb-4">
     <label className="block mb-2 font-bold">Height</label>
     <input type="number" name="height" value={formState.height} onChange={handleChange} className="w-full p-2 border" />
 </div>
-
+<div className="mb-4">
+    <label className="block mb-2 font-bold">試料</label>
+    <input type="number" name="height" value={formState.height} onChange={handleChange} className="w-full p-2 border" />
+</div>
 <div className="mb-4">
     <label className="block mb-2 font-bold">Weight</label>
+    <input type="number" name="weight" value={formState.weight} onChange={handleChange} className="w-full p-2 border" />
+</div>
+<div className="mb-4">
+    <label className="block mb-2 font-bold">試料</label>
     <input type="number" name="weight" value={formState.weight} onChange={handleChange} className="w-full p-2 border" />
 </div>
 
@@ -207,6 +239,14 @@ function DataForm({ onSubmit }) {
         <option value="">Select Option</option>
         <option value="Yes">Yes</option>
         <option value="No">No</option>
+    </select>
+</div>
+<div className="mb-4">
+    <label className="block mb-2 font-bold">試料 試料 試料?</label>
+    <select name="smoke" value={formState.smoke} onChange={handleChange} className="w-full p-2 border">
+        <option value="">試料 試料</option>
+        <option value="Yes">試料</option>
+        <option value="No">試料</option>
     </select>
 </div>
 
