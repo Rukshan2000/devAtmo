@@ -11,7 +11,7 @@ function DataFormDisplay({ data }) {
     return (
         <div>
             <div ref={formRef} className="max-w-4xl p-6 mx-auto bg-gray-100 rounded-lg shadow-md">
-                <h2 className="text-2xl font-bold mb-4">Submitted Data</h2>
+                <h2 className="mb-4 text-2xl font-bold">Submitted Data</h2>
                 
                 {/* General Info Section */}
                 <div className="mb-4">
@@ -95,7 +95,6 @@ function DataFormDisplay({ data }) {
                 </div>
             </div>
 
-            <button onClick={handlePrint} className="px-4 py-2 mt-4 text-white bg-blue-500 rounded">Print Data</button>
         </div>
     );
 }

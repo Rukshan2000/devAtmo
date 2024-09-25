@@ -19,10 +19,7 @@ const App = () => {
         <Route path="/" element={<Form onSubmit={handleFormSubmit} />} />
 
         {/* Route to display submitted form data */}
-        {formData && <Route path="/display" element={<DataFormDisplay data={formData} />} />}
-        
-        {/* Redirect to the form if no data */}
-        <Route path="/display" element={<Navigate to="/" />} />
+        <Route path="/display" element={formData ? <DataFormDisplay data={formData} /> : <Navigate to="/" />} />
       </Routes>
     </BrowserRouter>
   );

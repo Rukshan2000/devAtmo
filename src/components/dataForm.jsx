@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 
 function DataForm({ onSubmit }) {
     const [formState, setFormState] = useState({
@@ -36,11 +38,18 @@ function DataForm({ onSubmit }) {
     });
 
     // General change handler for input fields
+    const navigate = useNavigate(); // Initialize the useNavigate hook
+
     const handleChange = (e) => {
         const { name, value } = e.target;
-        setFormState({ ...formState, [name]: value });
-    };
-
+        setFormState({ ...formState, [name]: value }); // Use setFormState instead of setFormData
+      };
+      
+      const handleSubmit = (e) => {
+        e.preventDefault();
+        onSubmit(formState); // Change formData to formState
+        navigate('/display');
+      };
     // File input handler
     const handleFileChange = (e) => {
         const { name, files } = e.target;
@@ -70,11 +79,7 @@ function DataForm({ onSubmit }) {
         updatedList.splice(index, 1);
         setFormState({ ...formState, [field]: updatedList });
     };
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        onSubmit(formState); // Send data to the parent component or API
-    };
+    
 
 
     return (
@@ -131,10 +136,10 @@ function DataForm({ onSubmit }) {
 {/* Education Section */}
 <h3 className="mb-2 text-xl font-bold">Education Background / Work History</h3>
 {formState.education.map((item, index) => (
-    <div key={index} className="flex flex-col mb-4 gap-4 lg:flex-row lg:gap-4">
-        <input type="text" name="year" placeholder="Year" value={item.year} onChange={(e) => handleDynamicChange(index, 'education', e)} className="p-2 border flex-1" />
-        <input type="text" name="month" placeholder="Month" value={item.month} onChange={(e) => handleDynamicChange(index, 'education', e)} className="p-2 border flex-1" />
-        <input type="text" name="background" placeholder="Education/Work History" value={item.background} onChange={(e) => handleDynamicChange(index, 'education', e)} className="p-2 border flex-1" />
+    <div key={index} className="flex flex-col gap-4 mb-4 lg:flex-row lg:gap-4">
+        <input type="text" name="year" placeholder="Year" value={item.year} onChange={(e) => handleDynamicChange(index, 'education', e)} className="flex-1 p-2 border" />
+        <input type="text" name="month" placeholder="Month" value={item.month} onChange={(e) => handleDynamicChange(index, 'education', e)} className="flex-1 p-2 border" />
+        <input type="text" name="background" placeholder="Education/Work History" value={item.background} onChange={(e) => handleDynamicChange(index, 'education', e)} className="flex-1 p-2 border" />
         <button type="button" onClick={() => removeRow(index, 'education')} className="px-4 py-2 text-white bg-red-500 rounded lg:self-center">Remove</button>
     </div>
 ))}
@@ -143,12 +148,12 @@ function DataForm({ onSubmit }) {
 {/* Work History Section */}
 <h3 className="mb-2 text-xl font-bold">Work History</h3>
 {formState.workHistory.map((item, index) => (
-    <div key={index} className="flex flex-col mb-4 gap-4 lg:flex-row lg:gap-4">
-        <input type="text" name="year" placeholder="Year" value={item.year} onChange={(e) => handleDynamicChange(index, 'workHistory', e)} className="p-2 border flex-1" />
-        <input type="text" name="month" placeholder="Month" value={item.month} onChange={(e) => handleDynamicChange(index, 'workHistory', e)} className="p-2 border flex-1" />
-        <input type="text" name="companyName" placeholder="Company Name" value={item.companyName} onChange={(e) => handleDynamicChange(index, 'workHistory', e)} className="p-2 border flex-1" />
-        <input type="text" name="occupation" placeholder="Occupation" value={item.occupation} onChange={(e) => handleDynamicChange(index, 'workHistory', e)} className="p-2 border flex-1" />
-        <input type="text" name="location" placeholder="Location" value={item.location} onChange={(e) => handleDynamicChange(index, 'workHistory', e)} className="p-2 border flex-1" />
+    <div key={index} className="flex flex-col gap-4 mb-4 lg:flex-row lg:gap-4">
+        <input type="text" name="year" placeholder="Year" value={item.year} onChange={(e) => handleDynamicChange(index, 'workHistory', e)} className="flex-1 p-2 border" />
+        <input type="text" name="month" placeholder="Month" value={item.month} onChange={(e) => handleDynamicChange(index, 'workHistory', e)} className="flex-1 p-2 border" />
+        <input type="text" name="companyName" placeholder="Company Name" value={item.companyName} onChange={(e) => handleDynamicChange(index, 'workHistory', e)} className="flex-1 p-2 border" />
+        <input type="text" name="occupation" placeholder="Occupation" value={item.occupation} onChange={(e) => handleDynamicChange(index, 'workHistory', e)} className="flex-1 p-2 border" />
+        <input type="text" name="location" placeholder="Location" value={item.location} onChange={(e) => handleDynamicChange(index, 'workHistory', e)} className="flex-1 p-2 border" />
         <button type="button" onClick={() => removeRow(index, 'workHistory')} className="px-4 py-2 text-white bg-red-500 rounded lg:self-center">Remove</button>
     </div>
 ))}
@@ -157,10 +162,10 @@ function DataForm({ onSubmit }) {
 {/* Qualifications Section */}
 <h3 className="mb-2 text-xl font-bold">Qualifications / Licenses / Certifications / Awards</h3>
 {formState.qualifications.map((item, index) => (
-    <div key={index} className="flex flex-col mb-4 gap-4 lg:flex-row lg:gap-4">
-        <input type="text" name="year" placeholder="Year" value={item.year} onChange={(e) => handleDynamicChange(index, 'qualifications', e)} className="p-2 border flex-1" />
-        <input type="text" name="month" placeholder="Month" value={item.month} onChange={(e) => handleDynamicChange(index, 'qualifications', e)} className="p-2 border flex-1" />
-        <input type="text" name="qualification" placeholder="Qualification/Award" value={item.qualification} onChange={(e) => handleDynamicChange(index, 'qualifications', e)} className="p-2 border flex-1" />
+    <div key={index} className="flex flex-col gap-4 mb-4 lg:flex-row lg:gap-4">
+        <input type="text" name="year" placeholder="Year" value={item.year} onChange={(e) => handleDynamicChange(index, 'qualifications', e)} className="flex-1 p-2 border" />
+        <input type="text" name="month" placeholder="Month" value={item.month} onChange={(e) => handleDynamicChange(index, 'qualifications', e)} className="flex-1 p-2 border" />
+        <input type="text" name="qualification" placeholder="Qualification/Award" value={item.qualification} onChange={(e) => handleDynamicChange(index, 'qualifications', e)} className="flex-1 p-2 border" />
         <button type="button" onClick={() => removeRow(index, 'qualifications')} className="px-4 py-2 text-white bg-red-500 rounded lg:self-center">Remove</button>
     </div>
 ))}
