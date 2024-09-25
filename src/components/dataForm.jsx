@@ -255,7 +255,16 @@ function DataForm({ onSubmit }) {
     <select name="alcohol" value={formState.alcohol} onChange={handleChange} className="w-full p-2 border">
         <option value="">Select Option</option>
         <option value="Yes">Yes</option>
-        <option value="No">No</option>
+        <option value="Nos">No</option>
+    </select>
+</div>
+
+<div className="mb-4">
+    <label className="block mb-2 font-bold">試料 試料 試料 試料?</label>
+    <select name="alcohol" value={formState.alcohol} onChange={handleChange} className="w-full p-2 border">
+        <option value="">試料 試料</option>
+        <option value="Yes">試料</option>
+        <option value="Nos">試料</option>
     </select>
 </div>
 
@@ -267,6 +276,14 @@ function DataForm({ onSubmit }) {
         <option value="No">No</option>
     </select>
 </div>
+<div className="mb-4">
+    <label className="block mb-2 font-bold">試料 試料 試料 試料 試料?</label>
+    <select name="tattoo" value={formState.tattoo} onChange={handleChange} className="w-full p-2 border">
+        <option value="">試料 試料</option>
+        <option value="Yes">試料</option>
+        <option value="No">試料</option>
+    </select>
+</div>
 
 <div className="mb-4">
     <label className="block mb-2 font-bold">Do you have color blindness?</label>
@@ -276,6 +293,14 @@ function DataForm({ onSubmit }) {
         <option value="No">No</option>
     </select>
 </div>
+<div className="mb-4">
+    <label className="block mb-2 font-bold">試料 試料 試料 試料 試料?</label>
+    <select name="colorBlindness" value={formState.colorBlindness} onChange={handleChange} className="w-full p-2 border">
+        <option value="">試料 試料</option>
+        <option value="Yes">試料</option>
+        <option value="No">試料</option>
+    </select>
+</div>
 
 <div className="mb-4">
     <label className="block mb-2 font-bold">Have you been to Japan before?</label>
@@ -283,6 +308,15 @@ function DataForm({ onSubmit }) {
         <option value="">Select Option</option>
         <option value="Yes">Yes</option>
         <option value="No">No</option>
+    </select>
+</div>
+
+<div className="mb-4">
+    <label className="block mb-2 font-bold">試料 試料 試料 試料 試料 試料?</label>
+    <select name="beenToJapan" value={formState.beenToJapan} onChange={handleChange} className="w-full p-2 border">
+        <option value="">試料 試料</option>
+        <option value="Yes">試料</option>
+        <option value="No">試料</option>
     </select>
 </div>
 </div>
@@ -301,6 +335,16 @@ function DataForm({ onSubmit }) {
             ))}
             <button type="button" onClick={() => addRow('education')} className="px-4 py-2 mb-6 text-white bg-blue-600 rounded">Add Education/Work History</button>
 
+            <h3 className="mt-6 mb-2 text-2xl font-bold text-gray-700">試料 試料</h3>
+            {formState.education.map((item, index) => (
+                <div key={index} className="flex flex-col gap-4 mb-4 lg:flex-row lg:gap-4">
+                    <input type="text" name="year" placeholder="試料" value={item.year} onChange={(e) => handleDynamicChange(index, 'education', e)} className="flex-1 p-3 border rounded-md" />
+                    <input type="text" name="month" placeholder="試料" value={item.month} onChange={(e) => handleDynamicChange(index, 'education', e)} className="flex-1 p-3 border rounded-md" />
+                    <input type="text" name="background" placeholder="試料/試料 試料" value={item.background} onChange={(e) => handleDynamicChange(index, 'education', e)} className="flex-1 p-3 border rounded-md" />
+                    <button type="button" onClick={() => removeRow(index, 'education')} className="self-center px-4 py-2 text-white bg-red-500 rounded">試料</button>
+                </div>
+            ))}
+            <button type="button" onClick={() => addRow('education')} className="px-4 py-2 mb-6 text-white bg-blue-600 rounded">試料 試料/試料 試料</button>
             {/* Work History Section */}
             <h3 className="mt-6 mb-2 text-2xl font-bold text-gray-700">Work History</h3>
             {formState.workHistory.map((item, index) => (
