@@ -346,6 +346,8 @@ function DataForm({ onSubmit }) {
             ))}
             <button type="button" onClick={() => addRow('education')} className="px-4 py-2 mb-6 text-white bg-blue-600 rounded">試料 試料/試料 試料</button>
             {/* Work History Section */}
+           
+
             <h3 className="mt-6 mb-2 text-2xl font-bold text-gray-700">Work History</h3>
             {formState.workHistory.map((item, index) => (
                 <div key={index} className="flex flex-col gap-4 mb-4 lg:flex-row lg:gap-4">
@@ -359,6 +361,19 @@ function DataForm({ onSubmit }) {
             ))}
             <button type="button" onClick={() => addRow('workHistory')} className="px-4 py-2 mb-6 text-white bg-blue-600 rounded">Add Work History</button>
 
+            <h3 className="mt-6 mb-2 text-2xl font-bold text-gray-700">試料 試料</h3>
+            {formState.workHistory.map((item, index) => (
+                <div key={index} className="flex flex-col gap-4 mb-4 lg:flex-row lg:gap-4">
+                    <input type="text" name="year" placeholder="試料" value={item.year} onChange={(e) => handleDynamicChange(index, 'workHistory', e)} className="flex-1 p-3 border rounded-md" />
+                    <input type="text" name="month" placeholder="試料" value={item.month} onChange={(e) => handleDynamicChange(index, 'workHistory', e)} className="flex-1 p-3 border rounded-md" />
+                    <input type="text" name="companyName" placeholder="試料 試料" value={item.companyName} onChange={(e) => handleDynamicChange(index, 'workHistory', e)} className="flex-1 p-3 border rounded-md" />
+                    <input type="text" name="occupation" placeholder="試料" value={item.occupation} onChange={(e) => handleDynamicChange(index, 'workHistory', e)} className="flex-1 p-3 border rounded-md" />
+                    <input type="text" name="location" placeholder="試料" value={item.location} onChange={(e) => handleDynamicChange(index, 'workHistory', e)} className="flex-1 p-3 border rounded-md" />
+                    <button type="button" onClick={() => removeRow(index, 'workHistory')} className="self-center px-4 py-2 text-white bg-red-500 rounded">試料</button>
+                </div>
+            ))}
+            <button type="button" onClick={() => addRow('workHistory')} className="px-4 py-2 mb-6 text-white bg-blue-600 rounded">試料 試料 試料</button>
+
             {/* Qualifications Section */}
             <h3 className="mt-6 mb-2 text-2xl font-bold text-gray-700">Qualifications / Licenses / Certifications</h3>
             {formState.qualifications.map((item, index) => (
@@ -371,7 +386,18 @@ function DataForm({ onSubmit }) {
             ))}
             <button type="button" onClick={() => addRow('qualifications')} className="px-4 py-2 mb-6 text-white bg-blue-600 rounded">Add Qualification</button>
 
-            <h2 className="mb-6 text-3xl font-bold text-gray-800">File Uploads</h2>
+            <h3 className="mt-6 mb-2 text-2xl font-bold text-gray-700">試料 / 試料 / 試料</h3>
+            {formState.qualifications.map((item, index) => (
+                <div key={index} className="flex flex-col gap-4 mb-4 lg:flex-row lg:gap-4">
+                    <input type="text" name="year" placeholder="試料" value={item.year} onChange={(e) => handleDynamicChange(index, 'qualifications', e)} className="flex-1 p-3 border rounded-md" />
+                    <input type="text" name="month" placeholder="試料" value={item.month} onChange={(e) => handleDynamicChange(index, 'qualifications', e)} className="flex-1 p-3 border rounded-md" />
+                    <input type="text" name="qualification" placeholder="試料" value={item.qualification} onChange={(e) => handleDynamicChange(index, 'qualifications', e)} className="flex-1 p-3 border rounded-md" />
+                    <button type="button" onClick={() => removeRow(index, 'qualifications')} className="self-center px-4 py-2 text-white bg-red-500 rounded">試料</button>
+                </div>
+            ))}
+            <button type="button" onClick={() => addRow('qualifications')} className="px-4 py-2 mb-6 text-white bg-blue-600 rounded">試料 試料</button>
+
+            <h2 className="mb-6 text-3xl font-bold text-gray-800">File Uploads / 試料</h2>
 
             <div className="grid grid-cols-1 gap-4 mb-4 md:grid-cols-3">
 
@@ -379,50 +405,99 @@ function DataForm({ onSubmit }) {
     <label className="block mb-2 font-bold">Personal Photo</label>
     <input type="file" name="personalPhoto" accept="image/*" onChange={handleFileChange} className="w-full p-2 border" />
 </div>
+<div className="mb-4">
+    <label className="block mb-2 font-bold">試料 試料</label>
+    <input type="file" name="personalPhoto" accept="image/*" onChange={handleFileChange} className="w-full p-2 border" />
+</div>
+
 
 <div className="mb-4">
     <label className="block mb-2 font-bold">CV</label>
     <input type="file" name="cv" accept=".pdf,.doc,.docx" onChange={handleFileChange} className="w-full p-2 border" />
 </div>
+<div className="mb-4">
+    <label className="block mb-2 font-bold">試料</label>
+    <input type="file" name="cv" accept=".pdf,.doc,.docx" onChange={handleFileChange} className="w-full p-2 border" />
+</div>
+
 
 <div className="mb-4">
     <label className="block mb-2 font-bold">Interview</label>
     <input type="file" name="interview" accept=".pdf,.doc,.docx" onChange={handleFileChange} className="w-full p-2 border" />
 </div>
+<div className="mb-4">
+    <label className="block mb-2 font-bold">試料</label>
+    <input type="file" name="interview" accept=".pdf,.doc,.docx" onChange={handleFileChange} className="w-full p-2 border" />
+</div>
+
 
 <div className="mb-4">
     <label className="block mb-2 font-bold">PT Test</label>
     <input type="file" name="ptTest" accept=".pdf,.doc,.docx" onChange={handleFileChange} className="w-full p-2 border" />
 </div>
+<div className="mb-4">
+    <label className="block mb-2 font-bold">試料 試料</label>
+    <input type="file" name="ptTest" accept=".pdf,.doc,.docx" onChange={handleFileChange} className="w-full p-2 border" />
+</div>
+
 
 <div className="mb-4">
     <label className="block mb-2 font-bold">PT Test Certificate</label>
     <input type="file" name="ptTestCertificate" accept=".pdf,.doc,.docx" onChange={handleFileChange} className="w-full p-2 border" />
 </div>
+<div className="mb-4">
+    <label className="block mb-2 font-bold">試料 試料 試料</label>
+    <input type="file" name="ptTestCertificate" accept=".pdf,.doc,.docx" onChange={handleFileChange} className="w-full p-2 border" />
+</div>
+
+
 
 <div className="mb-4">
     <label className="block mb-2 font-bold">Passport Copy</label>
     <input type="file" name="passportCopy" accept="image/*,.pdf" onChange={handleFileChange} className="w-full p-2 border" />
 </div>
+<div className="mb-4">
+    <label className="block mb-2 font-bold">試料 試料</label>
+    <input type="file" name="passportCopy" accept="image/*,.pdf" onChange={handleFileChange} className="w-full p-2 border" />
+</div>
+
+
 
 <div className="mb-4">
     <label className="block mb-2 font-bold">Driver License</label>
     <input type="file" name="driverLicense" accept="image/*,.pdf" onChange={handleFileChange} className="w-full p-2 border" />
 </div>
+<div className="mb-4">
+    <label className="block mb-2 font-bold">試料 試料</label>
+    <input type="file" name="driverLicense" accept="image/*,.pdf" onChange={handleFileChange} className="w-full p-2 border" />
+</div>
+
+
 
 <div className="mb-4">
     <label className="block mb-2 font-bold">Qualification - Education</label>
     <input type="file" name="qualificationEducation" accept=".pdf,.doc,.docx" onChange={handleFileChange} className="w-full p-2 border" />
 </div>
+<div className="mb-4">
+    <label className="block mb-2 font-bold">試料 - 試料</label>
+    <input type="file" name="qualificationEducation" accept=".pdf,.doc,.docx" onChange={handleFileChange} className="w-full p-2 border" />
+</div>
+
+
 
 <div className="mb-4">
     <label className="block mb-2 font-bold">Qualification - Working</label>
     <input type="file" name="qualificationWorking" accept=".pdf,.doc,.docx" onChange={handleFileChange} className="w-full p-2 border" />
 </div>
+<div className="mb-4">
+    <label className="block mb-2 font-bold">試料 - 試料</label>
+    <input type="file" name="qualificationWorking" accept=".pdf,.doc,.docx" onChange={handleFileChange} className="w-full p-2 border" />
+</div>
+
 </div>
 
             {/* Submit Button */}
-            <button type="submit" className="px-4 py-2 mt-6 text-white bg-green-600 rounded">Submit</button>
+            <button type="submit" className="px-4 py-2 mt-6 text-white bg-green-600 rounded">Submit / 試料</button>
         </form>
     );
 }
