@@ -77,7 +77,7 @@ function DataForm({ onSubmit }) {
 
     return (
         <form onSubmit={handleSubmit} className="p-6 bg-gray-100 rounded-lg shadow-lg">
-            <h2 className="mb-6 text-3xl font-bold text-gray-800">General Info / 試料</h2>
+            <h2 className="mb-6 text-3xl font-bold text-gray-800">General Info / 一般情報</h2>
 
             {/* General Info 試料*/}
             <div className="grid grid-cols-1 gap-4 mb-4 md:grid-cols-2">
@@ -86,7 +86,7 @@ function DataForm({ onSubmit }) {
                     <input type="text" name="fullName" value={formState.fullName} onChange={handleChange} className="w-full p-3 border rounded-md" />
                 </div>
                 <div>
-                    <label className="block mb-1 font-semibold">試料</label>
+                    <label className="block mb-1 font-semibold">フルネーム</label>
                     <input type="text" name="fullNamejapan" value={formState.fullNamejapan} onChange={handleChange} className="w-full p-3 border rounded-md" />
                 </div>
                 <div>
@@ -94,7 +94,7 @@ function DataForm({ onSubmit }) {
                     <input type="date" name="dateOfBirth" value={formState.dateOfBirth} onChange={handleChange} className="w-full p-3 border rounded-md" />
                 </div>
                 <div>
-                    <label className="block mb-1 font-semibold">試料</label>
+                    <label className="block mb-1 font-semibold">携帯</label>
                     <input type="date" name="dateOfBirthjapan" value={formState.dateOfBirth} onChange={handleChange} className="w-full p-3 border rounded-md" />
                 </div>
                 <div>
@@ -102,7 +102,7 @@ function DataForm({ onSubmit }) {
                     <input type="text" name="address" value={formState.address} onChange={handleChange} className="w-full p-3 border rounded-md" />
                 </div>
                 <div>
-                    <label className="block mb-1 font-semibold">試料</label>
+                    <label className="block mb-1 font-semibold">住所</label>
                     <input type="text" name="addressjapan" value={formState.addressjapan} onChange={handleChange} className="w-full p-3 border rounded-md" />
                 </div>
                 <div>
@@ -110,7 +110,7 @@ function DataForm({ onSubmit }) {
                     <input type="text" name="statusOfResidence" value={formState.statusOfResidence} onChange={handleChange} className="w-full p-3 border rounded-md" />
                 </div>
                 <div>
-                    <label className="block mb-1 font-semibold">試料</label>
+                    <label className="block mb-1 font-semibold">在留資格</label>
                     <input type="text" name="statusOfResidencejapan" value={formState.statusOfResidencejapan} onChange={handleChange} className="w-full p-3 border rounded-md" />
                 </div>
                 <div>
@@ -123,12 +123,12 @@ function DataForm({ onSubmit }) {
                     </select>
                 </div>
                 <div>
-                    <label className="block mb-1 font-semibold">試料</label>
+                    <label className="block mb-1 font-semibold">セックス</label>
                     <select name="sex" value={formState.sex} onChange={handleChange} className="w-full p-3 border rounded-md">
-                        <option value="">試料</option>
-                        <option value="Male">試料</option>
-                        <option value="Female">試料</option>
-                        <option value="Other">試料</option>
+                        <option value="">性別を選択</option>
+                        <option value="Male">男</option>
+                        <option value="Female">女性</option>
+                        <option value="Other"> 他の</option>
                     </select>
                 </div>
                 <div>
@@ -136,7 +136,7 @@ function DataForm({ onSubmit }) {
                     <input type="text" name="nationality" value={formState.nationality} onChange={handleChange} className="w-full p-3 border rounded-md" />
                 </div>
                 <div>
-                    <label className="block mb-1 font-semibold">試料</label>
+                    <label className="block mb-1 font-semibold">国籍</label>
                     <input type="text" name="nationalityjapan" value={formState.nationalityjapan} onChange={handleChange} className="w-full p-3 border rounded-md" />
                 </div>
                 <div>
@@ -144,7 +144,7 @@ function DataForm({ onSubmit }) {
                     <input type="text" name="mobile" value={formState.mobile} onChange={handleChange} className="w-full p-3 border rounded-md" />
                 </div>
                 <div>
-                    <label className="block mb-1 font-semibold">試料</label>
+                    <label className="block mb-1 font-semibold">携帯</label>
                     <input type="text" name="mobile" value={formState.mobile} onChange={handleChange} className="w-full p-3 border rounded-md" />
                 </div>
                 <div>
@@ -152,12 +152,12 @@ function DataForm({ onSubmit }) {
                     <input type="email" name="email" value={formState.email} onChange={handleChange} className="w-full p-3 border rounded-md" />
                 </div>
                 <div>
-                    <label className="block mb-1 font-semibold">試料</label>
+                    <label className="block mb-1 font-semibold">電子メール</label>
                     <input type="email" name="email" value={formState.email} onChange={handleChange} className="w-full p-3 border rounded-md" />
                 </div>
             </div>
 
-            <h2 className="mb-6 text-3xl font-bold text-gray-800">Personel Info / 試料</h2>
+            <h2 className="mb-6 text-3xl font-bold text-gray-800">Personel Info / 個人情報</h2>
 
 
             <div className="grid grid-cols-1 gap-4 mb-4 md:grid-cols-2">
@@ -171,11 +171,11 @@ function DataForm({ onSubmit }) {
     </select>
 </div>
 <div className="mb-4">
-    <label className="block mb-2 font-bold">試料 / 試料</label>
+    <label className="block mb-2 font-bold">結婚する / 歌う</label>
     <select name="maritalStatus" value={formState.maritalStatus} onChange={handleChange} className="w-full p-2 border">
-        <option value="">Select Status</option>
-        <option value="Married">試料</option>
-        <option value="Single">試料</option>
+        <option value="">ステータスを選択</option>
+        <option value="Married">既婚</option>
+        <option value="Single">シングル</option>
     </select>
 </div>
 
@@ -184,7 +184,7 @@ function DataForm({ onSubmit }) {
     <input type="number" name="children" value={formState.children} onChange={handleChange} className="w-full p-2 border" />
 </div>
 <div className="mb-4">
-    <label className="block mb-2 font-bold">試料</label>
+    <label className="block mb-2 font-bold">子供は何人</label>
     <input type="number" name="children" value={formState.children} onChange={handleChange} className="w-full p-2 border" />
 </div>
 
@@ -209,14 +209,14 @@ function DataForm({ onSubmit }) {
 </div>
 
 <div className="mb-4">
-    <label className="block mb-2 font-bold">試料 試料</label>
+    <label className="block mb-2 font-bold">血液型</label>
     <select 
         name="bloodType" 
         value={formState.bloodType} 
         onChange={handleChange} 
         className="w-full p-2 border"
     >
-        <option value="">試料 試料 試料</option>
+        <option value="">血液型を選択</option>
         <option value="A+">A+</option>
         <option value="A-">A-</option>
         <option value="B+">B+</option>
@@ -239,12 +239,12 @@ function DataForm({ onSubmit }) {
     </select>
 </div>
 <div className="mb-4">
-    <label className="block mb-2 font-bold">試料</label>
+    <label className="block mb-2 font-bold">快適な手</label>
     <select name="comfortableHand" value={formState.comfortableHand} onChange={handleChange} className="w-full p-2 border">
-        <option value="">Select Hand</option>
-        <option value="Left">試料</option>
-        <option value="Right">試料</option>
-        <option value="Both">試料</option>
+        <option value="">手を選択</option>
+        <option value="Left">左</option>
+        <option value="Right">右</option>
+        <option value="Both">両方</option>
     </select>
 </div>
 
@@ -253,7 +253,7 @@ function DataForm({ onSubmit }) {
     <input type="number" name="height" value={formState.height} onChange={handleChange} className="w-full p-2 border" />
 </div>
 <div className="mb-4">
-    <label className="block mb-2 font-bold">試料</label>
+    <label className="block mb-2 font-bold">身長</label>
     <input type="number" name="height" value={formState.height} onChange={handleChange} className="w-full p-2 border" />
 </div>
 <div className="mb-4">
@@ -261,7 +261,7 @@ function DataForm({ onSubmit }) {
     <input type="number" name="weight" value={formState.weight} onChange={handleChange} className="w-full p-2 border" />
 </div>
 <div className="mb-4">
-    <label className="block mb-2 font-bold">試料</label>
+    <label className="block mb-2 font-bold">Weight</label>
     <input type="number" name="weight" value={formState.weight} onChange={handleChange} className="w-full p-2 border" />
 </div>
 
@@ -274,11 +274,11 @@ function DataForm({ onSubmit }) {
     </select>
 </div>
 <div className="mb-4">
-    <label className="block mb-2 font-bold">試料 試料 試料?</label>
+    <label className="block mb-2 font-bold">Do you Smoke??</label>
     <select name="smoke" value={formState.smoke} onChange={handleChange} className="w-full p-2 border">
-        <option value="">試料 試料</option>
-        <option value="Yes">試料</option>
-        <option value="No">試料</option>
+        <option value="">オプションを選択</option>
+        <option value="Yes">はい</option>
+        <option value="No">いいえ</option>
     </select>
 </div>
 
@@ -292,11 +292,11 @@ function DataForm({ onSubmit }) {
 </div>
 
 <div className="mb-4">
-    <label className="block mb-2 font-bold">試料 試料 試料 試料?</label>
-    <select name="alcohol" value={formState.alcohol} onChange={handleChange} className="w-full p-2 border">
-        <option value="">試料 試料</option>
-        <option value="Yes">試料</option>
-        <option value="Nos">試料</option>
+<label className="block mb-2 font-bold">Do you drink alcohol?</label>
+<select name="alcohol" value={formState.alcohol} onChange={handleChange} className="w-full p-2 border">
+    <option value="">オプションを選択</option>
+        <option value="Yes">はい</option>
+        <option value="No">いいえ</option>
     </select>
 </div>
 
@@ -309,11 +309,11 @@ function DataForm({ onSubmit }) {
     </select>
 </div>
 <div className="mb-4">
-    <label className="block mb-2 font-bold">試料 試料 試料 試料 試料?</label>
-    <select name="tattoo" value={formState.tattoo} onChange={handleChange} className="w-full p-2 border">
-        <option value="">試料 試料</option>
-        <option value="Yes">試料</option>
-        <option value="No">試料</option>
+<label className="block mb-2 font-bold">Do you have a tattoo?</label>
+<select name="tattoo" value={formState.tattoo} onChange={handleChange} className="w-full p-2 border">
+    <option value="">オプションを選択</option>
+        <option value="Yes">はい</option>
+        <option value="No">いいえ</option>
     </select>
 </div>
 
@@ -326,11 +326,11 @@ function DataForm({ onSubmit }) {
     </select>
 </div>
 <div className="mb-4">
-    <label className="block mb-2 font-bold">試料 試料 試料 試料 試料?</label>
-    <select name="colorBlindness" value={formState.colorBlindness} onChange={handleChange} className="w-full p-2 border">
-        <option value="">試料 試料</option>
-        <option value="Yes">試料</option>
-        <option value="No">試料</option>
+<label className="block mb-2 font-bold">Do you have color blindness?</label>
+<select name="colorBlindness" value={formState.colorBlindness} onChange={handleChange} className="w-full p-2 border">
+    <option value="">オプションを選択</option>
+        <option value="Yes">はい</option>
+        <option value="No">いいえ</option>
     </select>
 </div>
 
@@ -344,11 +344,11 @@ function DataForm({ onSubmit }) {
 </div>
 
 <div className="mb-4">
-    <label className="block mb-2 font-bold">試料 試料 試料 試料 試料 試料?</label>
-    <select name="beenToJapan" value={formState.beenToJapan} onChange={handleChange} className="w-full p-2 border">
-        <option value="">試料 試料</option>
-        <option value="Yes">試料</option>
-        <option value="No">試料</option>
+<label className="block mb-2 font-bold">Have you been to Japan before?</label>
+<select name="beenToJapan" value={formState.beenToJapan} onChange={handleChange} className="w-full p-2 border">
+    <option value="">オプションを選択</option>
+        <option value="Yes">はい</option>
+        <option value="No">いいえ</option>
     </select>
 </div>
 </div>
@@ -356,7 +356,7 @@ function DataForm({ onSubmit }) {
 
 
             {/* Section Headers */}
-            <h3 className="mt-6 mb-2 text-2xl font-bold text-gray-700">Education Background</h3>
+            <h3 className="mt-6 mb-2 text-2xl font-bold text-gray-700">Education Background / 学歴</h3>
             {formState.education.map((item, index) => (
                 <div key={index} className="grid grid-cols-1 gap-4 mb-4 md:grid-cols-3 lg:grid-cols-3">
                     <input type="text" name="year" placeholder="Year" value={item.year} onChange={(e) => handleDynamicChange(index, 'education', e)} className="flex-1 p-3 border rounded-md" />
@@ -375,7 +375,7 @@ function DataForm({ onSubmit }) {
           
            
 
-            <h3 className="mt-6 mb-2 text-2xl font-bold text-gray-700">Work History</h3>
+            <h3 className="mt-6 mb-2 text-2xl font-bold text-gray-700">Work History / 職歴</h3>
             {formState.workHistory.map((item, index) => (
                 <div key={index} className="grid grid-cols-1 gap-4 mb-4 md:grid-cols-5 lg:grid-cols-5">
                     <input type="text" name="year" placeholder="Year" value={item.year} onChange={(e) => handleDynamicChange(index, 'workHistory', e)} className="flex-1 p-3 border rounded-md" />
@@ -397,7 +397,7 @@ function DataForm({ onSubmit }) {
             
 
             {/* Qualifications Section */}
-            <h3 className="mt-6 mb-2 text-2xl font-bold text-gray-700">Qualifications / Licenses / Certifications</h3>
+            <h3 className="mt-6 mb-2 text-2xl font-bold text-gray-700">Qualifications(資格) / Licenses(ライセンス) / Certifications(認証)</h3>
             {formState.qualifications.map((item, index) => (
                 <div key={index} className="grid grid-cols-1 gap-4 mb-4 md:grid-cols-3 lg:grid-cols-3">
                 <input type="text" name="year" placeholder="Year" value={item.year} onChange={(e) => handleDynamicChange(index, 'qualifications', e)} className="flex-1 p-3 border rounded-md" />
