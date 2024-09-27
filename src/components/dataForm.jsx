@@ -86,7 +86,7 @@ function DataForm({ onSubmit }) {
                     <input type="text" name="fullName" value={formState.fullName} onChange={handleChange} className="w-full p-3 border rounded-md" />
                 </div>
                 <div>
-                    <label className="block mb-1 font-semibold">フルネーム</label>
+                    <label className="block mb-1 font-semibold">名前 </label>
                     <input type="text" name="fullNamejapan" value={formState.fullNamejapan} onChange={handleChange} className="w-full p-3 border rounded-md" />
                 </div>
                 <div>
@@ -123,7 +123,7 @@ function DataForm({ onSubmit }) {
                     </select>
                 </div>
                 <div>
-                    <label className="block mb-1 font-semibold">セックス</label>
+                    <label className="block mb-1 font-semibold">性別 </label>
                     <select name="sex" value={formState.sex} onChange={handleChange} className="w-full p-3 border rounded-md">
                         <option value="">性別を選択</option>
                         <option value="Male">男</option>
@@ -274,7 +274,7 @@ function DataForm({ onSubmit }) {
     </select>
 </div>
 <div className="mb-4">
-    <label className="block mb-2 font-bold">Do you Smoke??</label>
+    <label className="block mb-2 font-bold">タバコは吸​​いますか？</label>
     <select name="smoke" value={formState.smoke} onChange={handleChange} className="w-full p-2 border">
         <option value="">オプションを選択</option>
         <option value="Yes">はい</option>
@@ -292,7 +292,7 @@ function DataForm({ onSubmit }) {
 </div>
 
 <div className="mb-4">
-<label className="block mb-2 font-bold">Do you drink alcohol?</label>
+<label className="block mb-2 font-bold">お酒を飲みますか？</label>
 <select name="alcohol" value={formState.alcohol} onChange={handleChange} className="w-full p-2 border">
     <option value="">オプションを選択</option>
         <option value="Yes">はい</option>
@@ -309,7 +309,7 @@ function DataForm({ onSubmit }) {
     </select>
 </div>
 <div className="mb-4">
-<label className="block mb-2 font-bold">Do you have a tattoo?</label>
+<label className="block mb-2 font-bold">タトゥーはありますか？</label>
 <select name="tattoo" value={formState.tattoo} onChange={handleChange} className="w-full p-2 border">
     <option value="">オプションを選択</option>
         <option value="Yes">はい</option>
@@ -326,7 +326,7 @@ function DataForm({ onSubmit }) {
     </select>
 </div>
 <div className="mb-4">
-<label className="block mb-2 font-bold">Do you have color blindness?</label>
+<label className="block mb-2 font-bold">色覚異常はありますか?</label>
 <select name="colorBlindness" value={formState.colorBlindness} onChange={handleChange} className="w-full p-2 border">
     <option value="">オプションを選択</option>
         <option value="Yes">はい</option>
@@ -344,7 +344,7 @@ function DataForm({ onSubmit }) {
 </div>
 
 <div className="mb-4">
-<label className="block mb-2 font-bold">Have you been to Japan before?</label>
+<label className="block mb-2 font-bold">以前に日本に行ったことがありますか?</label>
 <select name="beenToJapan" value={formState.beenToJapan} onChange={handleChange} className="w-full p-2 border">
     <option value="">オプションを選択</option>
         <option value="Yes">はい</option>
@@ -363,9 +363,9 @@ function DataForm({ onSubmit }) {
                     <input type="text" name="month" placeholder="Month" value={item.month} onChange={(e) => handleDynamicChange(index, 'education', e)} className="flex-1 p-3 border rounded-md" />
                     <input type="text" name="background" placeholder="Education/Work History" value={item.background} onChange={(e) => handleDynamicChange(index, 'education', e)} className="flex-1 p-3 border rounded-md" />
 
-                    <input type="text" name="year" placeholder="Year" value={item.yearjapan} onChange={(e) => handleDynamicChange(index, 'education', e)} className="flex-1 p-3 border rounded-md" />
-                    <input type="text" name="month" placeholder="Month" value={item.monthjapan} onChange={(e) => handleDynamicChange(index, 'education', e)} className="flex-1 p-3 border rounded-md" />
-                    <input type="text" name="background" placeholder="Education/Work History" value={item.backgroundjapan} onChange={(e) => handleDynamicChange(index, 'education', e)} className="flex-1 p-3 border rounded-md" />
+                    <input type="text" name="year" placeholder="年" value={item.yearjapan} onChange={(e) => handleDynamicChange(index, 'education', e)} className="flex-1 p-3 border rounded-md" />
+                    <input type="text" name="month" placeholder="月" value={item.monthjapan} onChange={(e) => handleDynamicChange(index, 'education', e)} className="flex-1 p-3 border rounded-md" />
+                    <input type="text" name="background" placeholder="教育  / 職歴" value={item.backgroundjapan} onChange={(e) => handleDynamicChange(index, 'education', e)} className="flex-1 p-3 border rounded-md" />
                     <button type="button" onClick={() => removeRow(index, 'education')} className="self-center px-4 py-2 text-white bg-red-500 rounded w-72">Remove</button>
                 </div>
             ))}
@@ -384,11 +384,11 @@ function DataForm({ onSubmit }) {
                     <input type="text" name="occupation" placeholder="Occupation" value={item.occupation} onChange={(e) => handleDynamicChange(index, 'workHistory', e)} className="flex-1 p-3 border rounded-md" />
                     <input type="text" name="location" placeholder="Location" value={item.location} onChange={(e) => handleDynamicChange(index, 'workHistory', e)} className="flex-1 p-3 border rounded-md" />
 
-                    <input type="text" name="year" placeholder="Year" value={item.yearjapan} onChange={(e) => handleDynamicChange(index, 'workHistory', e)} className="flex-1 p-3 border rounded-md" />
-                    <input type="text" name="month" placeholder="Month" value={item.monthjapan} onChange={(e) => handleDynamicChange(index, 'workHistory', e)} className="flex-1 p-3 border rounded-md" />
-                    <input type="text" name="companyName" placeholder="Company Name" value={item.companyNamejapan} onChange={(e) => handleDynamicChange(index, 'workHistory', e)} className="flex-1 p-3 border rounded-md" />
-                    <input type="text" name="occupation" placeholder="Occupation" value={item.occupationjapan} onChange={(e) => handleDynamicChange(index, 'workHistory', e)} className="flex-1 p-3 border rounded-md" />
-                    <input type="text" name="location" placeholder="Location" value={item.locationjapan} onChange={(e) => handleDynamicChange(index, 'workHistory', e)} className="flex-1 p-3 border rounded-md" />
+                    <input type="text" name="year" placeholder="年" value={item.yearjapan} onChange={(e) => handleDynamicChange(index, 'workHistory', e)} className="flex-1 p-3 border rounded-md" />
+                    <input type="text" name="month" placeholder="月" value={item.monthjapan} onChange={(e) => handleDynamicChange(index, 'workHistory', e)} className="flex-1 p-3 border rounded-md" />
+                    <input type="text" name="companyName" placeholder="会社名" value={item.companyNamejapan} onChange={(e) => handleDynamicChange(index, 'workHistory', e)} className="flex-1 p-3 border rounded-md" />
+                    <input type="text" name="occupation" placeholder="職業" value={item.occupationjapan} onChange={(e) => handleDynamicChange(index, 'workHistory', e)} className="flex-1 p-3 border rounded-md" />
+                    <input type="text" name="location" placeholder="職業" value={item.locationjapan} onChange={(e) => handleDynamicChange(index, 'workHistory', e)} className="flex-1 p-3 border rounded-md" />
                     <button type="button" onClick={() => removeRow(index, 'workHistory')} className="self-center px-4 py-2 text-white bg-red-500 rounded w-72">Remove</button>
                 </div>
             ))}
@@ -404,9 +404,9 @@ function DataForm({ onSubmit }) {
                     <input type="text" name="month" placeholder="Month" value={item.month} onChange={(e) => handleDynamicChange(index, 'qualifications', e)} className="flex-1 p-3 border rounded-md" />
                     <input type="text" name="qualification" placeholder="Qualification" value={item.qualification} onChange={(e) => handleDynamicChange(index, 'qualifications', e)} className="flex-1 p-3 border rounded-md" />
 
-                    <input type="text" name="year" placeholder="Year" value={item.yearjapan} onChange={(e) => handleDynamicChange(index, 'qualifications', e)} className="flex-1 p-3 border rounded-md" />
-                    <input type="text" name="month" placeholder="Month" value={item.monthjapan} onChange={(e) => handleDynamicChange(index, 'qualifications', e)} className="flex-1 p-3 border rounded-md" />
-                    <input type="text" name="qualification" placeholder="Qualification" value={item.qualificationjapan} onChange={(e) => handleDynamicChange(index, 'qualifications', e)} className="flex-1 p-3 border rounded-md" />
+                    <input type="text" name="year" placeholder="年" value={item.yearjapan} onChange={(e) => handleDynamicChange(index, 'qualifications', e)} className="flex-1 p-3 border rounded-md" />
+                    <input type="text" name="month" placeholder="月" value={item.monthjapan} onChange={(e) => handleDynamicChange(index, 'qualifications', e)} className="flex-1 p-3 border rounded-md" />
+                    <input type="text" name="qualification" placeholder="資格" value={item.qualificationjapan} onChange={(e) => handleDynamicChange(index, 'qualifications', e)} className="flex-1 p-3 border rounded-md" />
                     <button type="button" onClick={() => removeRow(index, 'qualifications')} className="self-center px-4 py-2 text-white bg-red-500 rounded w-72">Remove</button>
                 </div>
             ))}
@@ -414,39 +414,39 @@ function DataForm({ onSubmit }) {
 
         
 
-            <h2 className="mb-6 text-3xl font-bold text-gray-800">File Uploads / 試料</h2>
+            <h2 className="mb-6 text-3xl font-bold text-gray-800">File Uploads / File Uploads</h2>
 
             <div className="grid grid-cols-1 gap-4 mb-4 md:grid-cols-3">
 
 <div className="mb-4">
-    <label className="block mb-2 font-bold">Personal Photo</label>
+    <label className="block mb-2 font-bold">Personal Photo / 個人写真</label>
     <input type="file" name="personalPhoto" accept="image/*" onChange={handleFileChange} className="w-full p-2 border" />
 </div>
 
 
 
 <div className="mb-4">
-    <label className="block mb-2 font-bold">CV</label>
+    <label className="block mb-2 font-bold">CV /履歴書</label>
     <input type="file" name="cv" accept=".pdf,.doc,.docx" onChange={handleFileChange} className="w-full p-2 border" />
 </div>
 
 
 
 <div className="mb-4">
-    <label className="block mb-2 font-bold">Interview</label>
+    <label className="block mb-2 font-bold">Interview / インタビュー</label>
     <input type="file" name="interview" accept=".pdf,.doc,.docx" onChange={handleFileChange} className="w-full p-2 border" />
 </div>
 
 
 <div className="mb-4">
-    <label className="block mb-2 font-bold">PT Test</label>
+    <label className="block mb-2 font-bold">PT Test / PTテスト</label>
     <input type="file" name="ptTest" accept=".pdf,.doc,.docx" onChange={handleFileChange} className="w-full p-2 border" />
 </div>
 
 
 
 <div className="mb-4">
-    <label className="block mb-2 font-bold">PT Test Certificate</label>
+    <label className="block mb-2 font-bold">PT Test Certificate / Ptテスト証明書</label>
     <input type="file" name="ptTestCertificate" accept=".pdf,.doc,.docx" onChange={handleFileChange} className="w-full p-2 border" />
 </div>
 
@@ -454,14 +454,14 @@ function DataForm({ onSubmit }) {
 
 
 <div className="mb-4">
-    <label className="block mb-2 font-bold">Passport Copy</label>
+    <label className="block mb-2 font-bold">Passport Copy / パスポートのコピー</label>
     <input type="file" name="passportCopy" accept="image/*,.pdf" onChange={handleFileChange} className="w-full p-2 border" />
 </div>
 
 
 
 <div className="mb-4">
-    <label className="block mb-2 font-bold">Driver License</label>
+    <label className="block mb-2 font-bold">Driver License / 運転免許証</label>
     <input type="file" name="driverLicense" accept="image/*,.pdf" onChange={handleFileChange} className="w-full p-2 border" />
 </div>
 
@@ -469,7 +469,7 @@ function DataForm({ onSubmit }) {
 
 
 <div className="mb-4">
-    <label className="block mb-2 font-bold">Qualification - Education</label>
+    <label className="block mb-2 font-bold">Qualification - Education /</label>
     <input type="file" name="qualificationEducation" accept=".pdf,.doc,.docx" onChange={handleFileChange} className="w-full p-2 border" />
 </div>
 
@@ -477,7 +477,7 @@ function DataForm({ onSubmit }) {
 
 
 <div className="mb-4">
-    <label className="block mb-2 font-bold">Qualification - Working</label>
+    <label className="block mb-2 font-bold">Qualification - Working / 働く資格</label>
     <input type="file" name="qualificationWorking" accept=".pdf,.doc,.docx" onChange={handleFileChange} className="w-full p-2 border" />
 </div>
 
@@ -485,7 +485,7 @@ function DataForm({ onSubmit }) {
 </div>
 
             {/* Submit Button */}
-            <button type="submit" className="px-4 py-2 mt-6 text-white bg-green-600 rounded">Submit / 試料</button>
+            <button type="submit" className="px-4 py-2 mt-6 text-white bg-green-600 rounded">Submit / </button>
         </form>
     );
 }
