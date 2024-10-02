@@ -54,10 +54,17 @@ const AdminDashboard = () => {
             console.log(error);
         });
     }
-    
+
     const handleDelete = (id) => {
         if (window.confirm('Are you sure you want to delete this user?')) {
-            setUserData(userData.filter(user => user.userId !== id));
+
+            axios.delete(`http://localhost:8081/api/applicant/${id}`).then((response) => {
+                console.log(response.data);
+            }).catch((error) => {
+                console.log(error);
+            });
+
+            // setUserData(userData.filter(user => user.userId !== id));
         }
     };
 
