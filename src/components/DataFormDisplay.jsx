@@ -6,6 +6,7 @@ import { FaUser, FaGraduationCap, FaBriefcase, FaTrophy, FaPrint } from 'react-i
 function DataFormDisplay() {
     const location = useLocation();
     const { user } = location.state;
+    
     const formRef = useRef();
     const navigate = useNavigate();
 

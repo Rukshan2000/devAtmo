@@ -9,11 +9,13 @@ import {
     Tooltip,
     Legend
 } from 'chart.js';
+import axios from 'axios';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 const AdminDashboard = () => {
     const [userData, setUserData] = useState([]);
+    const [applicantData, setApplicantData] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
     const [currentPage, setCurrentPage] = useState(1);
     const usersPerPage = 4; // Number of users displayed per page
@@ -21,12 +23,38 @@ const AdminDashboard = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        setUserData(Users); // Load user data from the JSON file
+        
+        axios.get('http://localhost:8081/api/applicant/').then((response) => {
+            setUserData(response.data.data);
+            
+        }).catch((error) => {
+            console.log(error);
+        });
+
+
     }, []);
 
+
+
     // Handle user actions
-    const handleView = (user) => navigate('/display', { state: { user } });
-    const handleEdit = (user) => navigate('/editdata', { state: { user } });
+    const handleView = (id) => {
+        axios.get(`http://localhost:8081/api/applicant/${id}`).then((response) => {
+            const user = response.data.data;
+            navigate('/display', { state: { user } })
+        }).catch((error) => {
+            console.log(error);
+        });
+    };
+
+    const handleEdit = (id) => {
+        axios.get(`http://localhost:8081/api/applicant/${id}`).then((response) => {
+            const user = response.data.data;
+            navigate('/editdata', { state: { user } })
+        }).catch((error) => {
+            console.log(error);
+        });
+    }
+    
     const handleDelete = (id) => {
         if (window.confirm('Are you sure you want to delete this user?')) {
             setUserData(userData.filter(user => user.userId !== id));
@@ -166,25 +194,25 @@ const chartOptions = {
                         </thead>
                         <tbody className="divide-y divide-gray-200">
                             {currentUsers.map(user => (
-                                <tr key={user.userId}>
+                                <tr key={user.id}>
                                     <td className="p-4">{user.fullName}</td>
                                     <td className="p-4">{new Date(user.dateOfBirth).toLocaleDateString()}</td>
                                     <td className="p-4">{user.sex}</td>
                                     <td className="flex justify-center p-4 space-x-4">
                                         <button
-                                            onClick={() => handleView(user)}
+                                            onClick={() => handleView(user.id)}
                                             className="text-blue-500 hover:text-blue-700"
                                         >
                                             <FaEye />
                                         </button>
                                         <button
-                                            onClick={() => handleEdit(user)}
+                                            onClick={() => handleEdit(user.id)}
                                             className="text-green-500 hover:text-green-700"
                                         >
                                             <FaEdit />
                                         </button>
                                         <button
-                                            onClick={() => handleDelete(user.userId)}
+                                            onClick={() => handleDelete(user.id)}
                                             className="text-red-500 hover:text-red-700"
                                         >
                                             <FaTrash />

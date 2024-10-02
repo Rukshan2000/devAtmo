@@ -6,6 +6,7 @@ import EditForm from './components/EditForm.jsx';
 import Login from './pages/LoginPage.jsx';
 import AdminDashboard from './pages/AdminDashboard.jsx';
 import DataFormDisplay from './components/DataFormDisplay'; 
+import DataForm from './components/dataForm.jsx';
 const App = () => {
   const [formData, setFormData] = useState(null);
 
@@ -20,7 +21,7 @@ const App = () => {
         {/* Route for the form */}
         <Route path="/" element={<Form onSubmit={handleFormSubmit} />} />
         <Route path="/login" element={<Login />} /> 
-        <Route path="/editdata" element={<EditForm />} /> 
+        <Route path="/editdata" element={<DataForm />} /> 
         <Route path="/display" element={<DataFormDisplay />} /> 
         <Route path="/dashboard" element={<AdminDashboard />} />
 
