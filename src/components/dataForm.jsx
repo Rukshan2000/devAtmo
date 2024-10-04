@@ -70,7 +70,7 @@ console.log("formState", formState);
                 console.log(res);
             })
             .catch(err => console.log(err));
-
+            window.location.reload();
         // navigate('/display');
     };
 
@@ -109,7 +109,7 @@ console.log("formState", formState);
         }).catch((error) => {
             console.log(error);
         })
-        console.log("updating");
+        window.location.reload();
     };
 
     return (

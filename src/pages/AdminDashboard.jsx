@@ -53,6 +53,7 @@ const AdminDashboard = () => {
         }).catch((error) => {
             console.log(error);
         });
+       
     }
 
     const handleDelete = (id) => {
@@ -63,7 +64,7 @@ const AdminDashboard = () => {
             }).catch((error) => {
                 console.log(error);
             });
-
+            window.location.reload();
             // setUserData(userData.filter(user => user.userId !== id));
         }
     };
