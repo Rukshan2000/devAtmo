@@ -47,10 +47,26 @@ function DataForm({ onSubmit }) {
         driverLicense: null,
         qualificationEducation: null,
         qualificationWorking: null
+
     });
+    // const [files, setFiles] = useState({
+    //     personalPhoto: null,
+    //     cv: null,
+    //     interview: null,
+    //     ptTest: null,
+    //     ptTestCertificate: null,
+    //     passportCopy: null,
+    //     driverLicense: null,
+    //     qualificationEducation: null,
+    //     qualificationWorking: null
+    //   });
 
 
-console.log("formState", formState);
+    //     const [education, setEducation] = useState(user ? user.education : [{ year: '', month: '', background: '', yearJapan: '', monthJapan: '', backgroundJapan: '' }]);
+    //     const [workHistory, setWorkhistory] = useState(user ? user.workHistory : [{ year: '', month: '', companyName: '', occupation: '', location: '', yearJapan: '', monthJapan: '', companyNameJapan: '', occupationJapan: '', locationJapan: '' }]);
+    //     const [qualifications, setQualifications] = useState(user ? user.qualifications : [{ year: '', month: '', qualification: '', yearJapan: '', monthJapan: '', qualificationJapan: '' }]);
+
+    //     console.log("formState", formState);
 
 
     const navigate = useNavigate();
@@ -62,23 +78,114 @@ console.log("formState", formState);
 
     const handleSave = (e) => {
         e.preventDefault();
-        // onSubmit(formState);
-        console.log(formState);
 
-        axios.post('http://localhost:8081/api/applicant/', formState)
+        const formData = new FormData();
+        // Append single fields
+        formData.append('fullName', formState.fullName);
+        formData.append('fullNameJapan', formState.fullNameJapan);
+        formData.append('dateOfBirth', formState.dateOfBirth);
+        formData.append('address', formState.address);
+        formData.append('addressJapan', formState.addressJapan);
+        formData.append('statusOfResidence', formState.statusOfResidence);
+        formData.append('statusOfResidenceJapan', formState.statusOfResidenceJapan);
+        formData.append('sex', formState.sex);
+        formData.append('nationality', formState.nationality);
+        formData.append('nationalityJapan', formState.nationalityJapan);
+        formData.append('mobile', formState.mobile);
+        formData.append('email', formState.email);
+        formData.append('maritalStatus', formState.maritalStatus);
+        formData.append('children', formState.children);
+        formData.append('bloodType', formState.bloodType);
+        formData.append('comfortableHand', formState.comfortableHand);
+        formData.append('height', formState.height);
+        formData.append('weight', formState.weight);
+        formData.append('smoke', formState.smoke);
+        formData.append('alcohol', formState.alcohol);
+        formData.append('tattoo', formState.tattoo);
+        formData.append('colorBlindness', formState.colorBlindness);
+        formData.append('beenToJapan', formState.beenToJapan);
+
+        // Append arrays (education, workHistory, qualifications)
+        formState.education.forEach((edu, index) => {
+            formData.append(`education[${index}][year]`, edu.year);
+            formData.append(`education[${index}][month]`, edu.month);
+            formData.append(`education[${index}][background]`, edu.background);
+            formData.append(`education[${index}][yearJapan]`, edu.yearJapan);
+            formData.append(`education[${index}][monthJapan]`, edu.monthJapan);
+            formData.append(`education[${index}][backgroundJapan]`, edu.backgroundJapan);
+        });
+
+        formState.workHistory.forEach((work, index) => {
+            formData.append(`workHistory[${index}][year]`, work.year);
+            formData.append(`workHistory[${index}][month]`, work.month);
+            formData.append(`workHistory[${index}][companyName]`, work.companyName);
+            formData.append(`workHistory[${index}][occupation]`, work.occupation);
+            formData.append(`workHistory[${index}][location]`, work.location);
+            formData.append(`workHistory[${index}][yearJapan]`, work.yearJapan);
+            formData.append(`workHistory[${index}][monthJapan]`, work.monthJapan);
+            formData.append(`workHistory[${index}][companyNameJapan]`, work.companyNameJapan);
+            formData.append(`workHistory[${index}][occupationJapan]`, work.occupationJapan);
+            formData.append(`workHistory[${index}][locationJapan]`, work.locationJapan);
+        });
+
+        formState.qualifications.forEach((qual, index) => {
+            formData.append(`qualifications[${index}][year]`, qual.year);
+            formData.append(`qualifications[${index}][month]`, qual.month);
+            formData.append(`qualifications[${index}][qualification]`, qual.qualification);
+            formData.append(`qualifications[${index}][yearJapan]`, qual.yearJapan);
+            formData.append(`qualifications[${index}][monthJapan]`, qual.monthJapan);
+            formData.append(`qualifications[${index}][qualificationJapan]`, qual.qualificationJapan);
+        });
+
+        // Append file fields
+        if (formState.personalPhoto) {
+            formData.append('personalPhoto', formState.personalPhoto);
+        }
+        if (formState.cv) {
+            formData.append('cv', formState.cv);
+        }
+        if (formState.interview) {
+            formData.append('interview', formState.interview);
+        }
+        if (formState.ptTest) {
+            formData.append('ptTest', formState.ptTest);
+        }
+        if (formState.ptTestCertificate) {
+            formData.append('ptTestCertificate', formState.ptTestCertificate);
+        }
+        if (formState.passportCopy) {
+            formData.append('passportCopy', formState.passportCopy);
+        }
+        if (formState.driverLicense) {
+            formData.append('driverLicense', formState.driverLicense);
+        }
+        if (formState.qualificationEducation) {
+            formData.append('qualificationEducation', formState.qualificationEducation);
+        }
+        if (formState.qualificationWorking) {
+            formData.append('qualificationWorking', formState.qualificationWorking);
+        }
+
+
+        console.log("formState", formState);
+        console.log("formData", formData);
+        axios.post('http://localhost:8081/api/applicant/', formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        })
             .then(res => {
                 console.log(res);
             })
             .catch(err => console.log(err));
-            window.location.reload();
-        // navigate('/display');
+        // window.location.reload();
     };
 
 
 
     const handleFileChange = (e) => {
         const { name, files } = e.target;
-        setFormState({ ...formState, [name]: files[0] });
+        setFormState({ ...formState, [name]: files[0] }); // Save the first file
     };
 
     const handleDynamicChange = (index, field, e) => {
@@ -101,19 +208,112 @@ console.log("formState", formState);
         updatedList.splice(index, 1);
         setFormState({ ...formState, [field]: updatedList });
     };
-    
+
     const handleUpdate = () => {
-        // e.preventDefault();
-        axios.put(`http://localhost:8081/api/applicant/${user.id}`, formState).then((response) => {
-            console.log("updated");
-        }).catch((error) => {
-            console.log(error);
+        const formData = new FormData();
+        // Append single fields
+        formData.append('fullName', formState.fullName);
+        formData.append('fullNameJapan', formState.fullNameJapan);
+        formData.append('dateOfBirth', formState.dateOfBirth);
+        formData.append('address', formState.address);
+        formData.append('addressJapan', formState.addressJapan);
+        formData.append('statusOfResidence', formState.statusOfResidence);
+        formData.append('statusOfResidenceJapan', formState.statusOfResidenceJapan);
+        formData.append('sex', formState.sex);
+        formData.append('nationality', formState.nationality);
+        formData.append('nationalityJapan', formState.nationalityJapan);
+        formData.append('mobile', formState.mobile);
+        formData.append('email', formState.email);
+        formData.append('maritalStatus', formState.maritalStatus);
+        formData.append('children', formState.children);
+        formData.append('bloodType', formState.bloodType);
+        formData.append('comfortableHand', formState.comfortableHand);
+        formData.append('height', formState.height);
+        formData.append('weight', formState.weight);
+        formData.append('smoke', formState.smoke);
+        formData.append('alcohol', formState.alcohol);
+        formData.append('tattoo', formState.tattoo);
+        formData.append('colorBlindness', formState.colorBlindness);
+        formData.append('beenToJapan', formState.beenToJapan);
+
+        // Append arrays (education, workHistory, qualifications)
+        formState.education.forEach((edu, index) => {
+            formData.append(`education[${index}][year]`, edu.year);
+            formData.append(`education[${index}][month]`, edu.month);
+            formData.append(`education[${index}][background]`, edu.background);
+            formData.append(`education[${index}][yearJapan]`, edu.yearJapan);
+            formData.append(`education[${index}][monthJapan]`, edu.monthJapan);
+            formData.append(`education[${index}][backgroundJapan]`, edu.backgroundJapan);
+        });
+
+        formState.workHistory.forEach((work, index) => {
+            formData.append(`workHistory[${index}][year]`, work.year);
+            formData.append(`workHistory[${index}][month]`, work.month);
+            formData.append(`workHistory[${index}][companyName]`, work.companyName);
+            formData.append(`workHistory[${index}][occupation]`, work.occupation);
+            formData.append(`workHistory[${index}][location]`, work.location);
+            formData.append(`workHistory[${index}][yearJapan]`, work.yearJapan);
+            formData.append(`workHistory[${index}][monthJapan]`, work.monthJapan);
+            formData.append(`workHistory[${index}][companyNameJapan]`, work.companyNameJapan);
+            formData.append(`workHistory[${index}][occupationJapan]`, work.occupationJapan);
+            formData.append(`workHistory[${index}][locationJapan]`, work.locationJapan);
+        });
+
+        formState.qualifications.forEach((qual, index) => {
+            formData.append(`qualifications[${index}][year]`, qual.year);
+            formData.append(`qualifications[${index}][month]`, qual.month);
+            formData.append(`qualifications[${index}][qualification]`, qual.qualification);
+            formData.append(`qualifications[${index}][yearJapan]`, qual.yearJapan);
+            formData.append(`qualifications[${index}][monthJapan]`, qual.monthJapan);
+            formData.append(`qualifications[${index}][qualificationJapan]`, qual.qualificationJapan);
+        });
+
+        // Append file fields
+        if (formState.personalPhoto) {
+            formData.append('personalPhoto', formState.personalPhoto);
+        }
+        if (formState.cv) {
+            formData.append('cv', formState.cv);
+        }
+        if (formState.interview) {
+            formData.append('interview', formState.interview);
+        }
+        if (formState.ptTest) {
+            formData.append('ptTest', formState.ptTest);
+        }
+        if (formState.ptTestCertificate) {
+            formData.append('ptTestCertificate', formState.ptTestCertificate);
+        }
+        if (formState.passportCopy) {
+            formData.append('passportCopy', formState.passportCopy);
+        }
+        if (formState.driverLicense) {
+            formData.append('driverLicense', formState.driverLicense);
+        }
+        if (formState.qualificationEducation) {
+            formData.append('qualificationEducation', formState.qualificationEducation);
+        }
+        if (formState.qualificationWorking) {
+            formData.append('qualificationWorking', formState.qualificationWorking);
+        }
+
+
+        axios.put(`http://localhost:8081/api/applicant/${user.id}`, formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
         })
+            .then(res => {
+                console.log(res);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
         window.location.reload();
     };
 
     return (
-        <form  className="p-6 bg-gray-100 rounded-lg shadow-lg">
+        <form className="p-6 bg-gray-100 rounded-lg shadow-lg">
             <h2 className="mb-6 text-3xl font-bold text-gray-800">General Info / 一般情報</h2>
 
             {/* General Info 試料*/}
