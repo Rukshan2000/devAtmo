@@ -52,7 +52,6 @@ const EditData = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         // Typically, you'd send this to your backend (e.g., using FormData if you're uploading files)
-        console.log('Updated User Data:', formData);
 
         // Navigate back to the admin dashboard after updating
         navigate('/admin-dashboard'); // Adjust the route as needed

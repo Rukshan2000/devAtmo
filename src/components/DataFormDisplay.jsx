@@ -6,7 +6,6 @@ import { FaUser, FaGraduationCap, FaBriefcase, FaTrophy, FaPrint, FaPumpMedical,
 function DataFormDisplay() {
     const location = useLocation();
     const { user } = location.state;
-    console.log("user", user);
 
     const formRef = useRef();
     const navigate = useNavigate();

@@ -61,7 +61,6 @@ const AdminDashboard = () => {
         if (window.confirm('Are you sure you want to delete this user?')) {
 
             axios.delete(`${BASE_URL}/api/applicant/${id}`).then((response) => {
-                console.log(response.data);
             }).catch((error) => {
                 console.log(error);
             });

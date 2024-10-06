@@ -49,24 +49,7 @@ const BASE_URL = process.env.REACT_APP_BASE_URL_API;
         qualificationWorking: null
 
     });
-    // const [files, setFiles] = useState({
-    //     personalPhoto: null,
-    //     cv: null,
-    //     interview: null,
-    //     ptTest: null,
-    //     ptTestCertificate: null,
-    //     passportCopy: null,
-    //     driverLicense: null,
-    //     qualificationEducation: null,
-    //     qualificationWorking: null
-    //   });
 
-
-    //     const [education, setEducation] = useState(user ? user.education : [{ year: '', month: '', background: '', yearJapan: '', monthJapan: '', backgroundJapan: '' }]);
-    //     const [workHistory, setWorkhistory] = useState(user ? user.workHistory : [{ year: '', month: '', companyName: '', occupation: '', location: '', yearJapan: '', monthJapan: '', companyNameJapan: '', occupationJapan: '', locationJapan: '' }]);
-    //     const [qualifications, setQualifications] = useState(user ? user.qualifications : [{ year: '', month: '', qualification: '', yearJapan: '', monthJapan: '', qualificationJapan: '' }]);
-
-    //     console.log("formState", formState);
 
 
     const navigate = useNavigate();
@@ -174,9 +157,10 @@ const BASE_URL = process.env.REACT_APP_BASE_URL_API;
         })
             .then(res => {
                 console.log(res);
+                alert('Data has been added');
             })
             .catch(err => console.log(err));
-        // window.location.reload();
+        window.location.reload();
     };
 
 
@@ -302,6 +286,7 @@ const BASE_URL = process.env.REACT_APP_BASE_URL_API;
             }
         })
             .then(res => {
+                alert('Data updated successfully');
                 console.log(res);
             })
             .catch((error) => {
