@@ -1,12 +1,12 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { useReactToPrint } from 'react-to-print';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { FaUser, FaGraduationCap, FaBriefcase, FaTrophy, FaPrint } from 'react-icons/fa';
+import { FaUser, FaGraduationCap, FaBriefcase, FaTrophy, FaPrint, FaPumpMedical, FaFile } from 'react-icons/fa';
 
 function DataFormDisplay() {
     const location = useLocation();
     const { user } = location.state;
-    
+
     const formRef = useRef();
     const navigate = useNavigate();
 
@@ -20,12 +20,35 @@ function DataFormDisplay() {
         return contentHeight > A4HeightInPx;
     };
 
+const  {fileLink,setFileLink} = useState('');
+
+
+
+const getLink = (dblink) => {
+    const baseURL = 'http://localhost:8081/';
+    
+    // Replace backslashes with forward slashes and construct the link
+    if (dblink) {
+      const db = dblink.split('\\');
+      // Ensure that the split array has more than 1 element
+      if (db.length > 1) {
+        setFileLink(`${baseURL}${db[1]}`);
+      } else {
+        setFileLink(`${baseURL}${dblink.replace(/\\/g, '/')}`);
+      }
+    } else {
+      setFileLink('');
+    }
+
+    return fileLink;
+  };
+
     return (
         <div className="flex flex-col min-h-screen bg-gray-50">
             <header className="flex items-center justify-between p-4 bg-white shadow">
                 <h2 className="text-3xl font-semibold text-gray-800">User Data Display</h2>
-                <button 
-                    onClick={() => navigate('/admin')}
+                <button
+                    onClick={() => navigate('/dashboard')}
                     className="flex items-center px-4 py-2 text-white transition duration-200 ease-in-out bg-gray-600 rounded-md hover:bg-gray-700"
                 >
                     Back to Dashboard
@@ -33,8 +56,8 @@ function DataFormDisplay() {
             </header>
 
             <main className="flex-1 p-8">
-                <div 
-                    ref={formRef} 
+                <div
+                    ref={formRef}
                     className="max-w-5xl p-6 mx-auto bg-white rounded-lg shadow-lg print:mx-5 print:my-5"
                 >
                     <h2 className="mb-6 text-2xl font-bold text-center text-gray-800">Submitted Data</h2>
@@ -46,68 +69,253 @@ function DataFormDisplay() {
                         let totalHeight = 0;
 
                         const sections = [
-                            { title: "General Information", icon: <FaUser />, content: (
-                                <div>
-                                    <p className="mb-2"><strong>Full Name:</strong> {user.fullName}</p>
-                                    <p className="mb-2"><strong>Date of Birth:</strong> {new Date(user.dateOfBirth).toLocaleDateString()}</p>
-                                    <p className="mb-2"><strong>Address:</strong> {user.address}</p>
-                                    <p className="mb-2"><strong>Status of Residence:</strong> {user.statusOfResidence}</p>
-                                    <p className="mb-2"><strong>Sex:</strong> {user.sex}</p>
-                                    <p className="mb-2"><strong>Nationality:</strong> {user.nationality}</p>
-                                    <p className="mb-2"><strong>Mobile:</strong> {user.mobile}</p>
-                                    <p className="mb-2"><strong>Email:</strong> {user.email}</p>
-                                </div>
-                            )},
-                            { title: "Personal Information", icon: <FaUser />, content: (
-                                <div>
-                                    <p className="mb-2"><strong>Marital Status:</strong> {user.maritalStatus}</p>
-                                    <p className="mb-2"><strong>Children:</strong> {user.children}</p>
-                                    <p className="mb-2"><strong>Blood Type:</strong> {user.bloodType}</p>
-                                    <p className="mb-2"><strong>Comfortable Hand:</strong> {user.comfortableHand}</p>
-                                    <p className="mb-2"><strong>Height:</strong> {user.height} cm</p>
-                                    <p className="mb-2"><strong>Weight:</strong> {user.weight} kg</p>
-                                    <p className="mb-2"><strong>Smoking:</strong> {user.smoke}</p>
-                                    <p className="mb-2"><strong>Alcohol:</strong> {user.alcohol}</p>
-                                    <p className="mb-2"><strong>Tattoo:</strong> {user.tattoo}</p>
-                                    <p className="mb-2"><strong>Color Blindness:</strong> {user.colorBlindness}</p>
-                                    <p className="mb-2"><strong>Been to Japan:</strong> {user.beenToJapan}</p>
-                                </div>
-                            )},
-                            { title: "Education Background", icon: <FaGraduationCap />, content: (
-                                <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-                                    {user.education?.map((item, index) => (
-                                        <div key={index} className="p-6 transition-shadow duration-200 bg-gray-100 rounded-lg shadow hover:shadow-lg">
-                                            <p className="mb-2"><strong>Year:</strong> {item.year}</p>
-                                            <p className="mb-2"><strong>Month:</strong> {item.month}</p>
-                                            <p className="mb-2"><strong>Background:</strong> {item.background}</p>
+                           
+                            {
+                                title: "General Information / 般情報", icon: <FaUser />, content: (
+                                    <div>
+                                        <div className='grid grid-cols-2'>
+                                            <p className="mb-2"><strong>Full Name:</strong> {user.fullName}</p>
+                                            <p className="mb-2"><strong>名前:</strong> {user.fullNameJapan}</p>
                                         </div>
-                                    ))}
-                                </div>
-                            )},
-                            { title: "Work History", icon: <FaBriefcase />, content: (
-                                <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-                                    {user.workHistory?.map((item, index) => (
-                                        <div key={index} className="p-6 transition-shadow duration-200 bg-gray-100 rounded-lg shadow hover:shadow-lg">
-                                            <p className="mb-2"><strong>Year:</strong> {item.year}</p>
-                                            <p className="mb-2"><strong>Month:</strong> {item.month}</p>
-                                            <p className="mb-2"><strong>Company Name:</strong> {item.companyName}</p>
-                                            <p className="mb-2"><strong>Occupation:</strong> {item.occupation}</p>
-                                            <p className="mb-2"><strong>Location:</strong> {item.location}</p>
+                                        <div className='grid grid-cols-2'>
+                                            <p className="mb-2"><strong>Date of Birth:</strong> {new Date(user.dateOfBirth).toLocaleDateString()}</p>
+                                            <p className="mb-2"><strong>携帯:</strong> {new Date(user.dateOfBirth).toLocaleDateString()}</p>
                                         </div>
-                                    ))}
-                                </div>
-                            )},
-                            { title: "Qualifications / Licenses / Certifications / Awards", icon: <FaTrophy />, content: (
-                                <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-                                    {user.qualifications?.map((item, index) => (
-                                        <div key={index} className="p-6 transition-shadow duration-200 bg-gray-100 rounded-lg shadow hover:shadow-lg">
-                                            <p className="mb-2"><strong>Year:</strong> {item.year}</p>
-                                            <p className="mb-2"><strong>Month:</strong> {item.month}</p>
-                                            <p className="mb-2"><strong>Qualification:</strong> {item.qualification}</p>
+                                        <div className='grid grid-cols-2'>
+                                            <p className="mb-2"><strong>Address:</strong> {user.address}</p>
+                                            <p className="mb-2"><strong>住所:</strong> {user.addressJapan}</p>
                                         </div>
-                                    ))}
-                                </div>
-                            )}
+                                        <div className='grid grid-cols-2'>
+                                            <p className="mb-2"><strong>Status of Residence:</strong> {user.statusOfResidence}</p>
+                                            <p className="mb-2"><strong>在留資格:</strong> {user.statusOfResidenceJapan}</p>
+                                        </div>
+                                        <div className='grid grid-cols-2'>
+                                            <p className="mb-2"><strong>Sex:</strong> {user.sex}</p>
+                                            <p className="mb-2"><strong>性別:</strong> {user.sex === "Male" ? "男" : user.sex === "Female" ? "女性" : "他の"}</p>
+                                        </div>
+                                        <div className='grid grid-cols-2'>
+                                            <p className="mb-2"><strong>Nationality:</strong> {user.nationality}</p>
+                                            <p className="mb-2"><strong>国籍:</strong> {user.nationalityJapan}</p>
+                                        </div>
+                                        <div className='grid grid-cols-2'>
+                                            <p className="mb-2"><strong>Mobile:</strong> {user.mobile}</p>
+                                            <p className="mb-2"><strong>携帯:</strong> {user.mobile}</p>
+                                        </div>
+                                        <div className='grid grid-cols-2'>
+                                            <p className="mb-2"><strong>Email:</strong> {user.email}</p>
+                                            <p className="mb-2"><strong>電子メール:</strong> {user.email}</p>
+                                        </div>
+                                    </div>
+                                )
+                            },
+                            {
+                                title: "Personal Information / 個人情報", icon: <FaUser />, content: (
+                                    <div>
+                                        <div className="grid grid-cols-2">
+                                            <p className="mb-2"><strong>Marital Status:</strong> {user.maritalStatus}</p>
+                                            <p className="mb-2"><strong>結婚する / 歌う:</strong> {user.maritalStatus === "Married" ? "既婚" : "シングル"}</p>
+                                        </div>
+                                        <div className="grid grid-cols-2">
+                                            <p className="mb-2"><strong>Children:</strong> {user.children}</p>
+                                            <p className="mb-2"><strong>子供は何人:</strong> {user.children}</p>
+                                        </div>
+                                        <div className="grid grid-cols-2">
+                                            <p className="mb-2"><strong>Blood Type:</strong> {user.bloodType}</p>
+                                            <p className="mb-2"><strong>血液型:</strong> {user.bloodType}</p>
+                                        </div>
+                                        <div className="grid grid-cols-2">
+                                            <p className="mb-2"><strong>Comfortable Hand:</strong> {user.comfortableHand}</p>
+                                            <p className="mb-2"><strong>快適な手:</strong> {user.comfortableHand === "Left" ? "左" : user.comfortableHand === "Right" ? "右" : "両方"}</p>
+                                        </div>
+                                        <div className="grid grid-cols-2">
+                                            <p className="mb-2"><strong>Height:</strong> {user.height} cm</p>
+                                            <p className="mb-2"><strong>身長:</strong> {user.height} cm</p>
+                                        </div>
+                                        <div className="grid grid-cols-2">
+                                            <p className="mb-2"><strong>Weight:</strong> {user.weight} kg</p>
+                                            <p className="mb-2"><strong>体重:</strong> {user.weight} kg</p>
+                                        </div>
+                                        <div className="grid grid-cols-2">
+                                            <p className="mb-2"><strong>Smoking:</strong> {user.smoke === "Yes" ? "Yes" : "No"}</p>
+                                            <p className="mb-2"><strong>タバコは吸​​いますか？:</strong> {user.smoke === "Yes" ? "はい" : "いいえ"}</p>
+                                        </div>
+                                        <div className="grid grid-cols-2">
+                                            <p className="mb-2"><strong>Alcohol:</strong> {user.alcohol === "Yes" ? "Yes" : "No"}</p>
+                                            <p className="mb-2"><strong>お酒を飲みますか？:</strong> {user.alcohol === "Yes" ? "はい" : "いいえ"}</p>
+                                        </div>
+                                        <div className="grid grid-cols-2">
+                                            <p className="mb-2"><strong>Tattoo:</strong> {user.tattoo === "Yes" ? "Yes" : "No"}</p>
+                                            <p className="mb-2"><strong>タトゥーはありますか？:</strong> {user.tattoo === "Yes" ? "はい" : "いいえ"}</p>
+                                        </div>
+                                        <div className="grid grid-cols-2">
+                                            <p className="mb-2"><strong>Color Blindness:</strong> {user.colorBlindness === "Yes" ? "Yes" : "No"}</p>
+                                            <p className="mb-2"><strong>色覚異常はありますか？:</strong> {user.colorBlindness === "Yes" ? "はい" : "いいえ"}</p>
+                                        </div>
+                                        <div className="grid grid-cols-2">
+                                            <p className="mb-2"><strong>Been to Japan:</strong> {user.beenToJapan === "Yes" ? "Yes" : "No"}</p>
+                                            <p className="mb-2"><strong>以前に日本に行ったことがありますか？:</strong> {user.beenToJapan === "Yes" ? "はい" : "いいえ"}</p>
+                                        </div>
+                                    </div>
+                                )
+                            },
+                            {
+                                title: "Education Background / 学歴", icon: <FaGraduationCap />, content: (
+                                    <div className="gap-6 ">
+                                        {user.education?.map((item, index) => (
+                                            <div key={index} className="flex gap-4 mb-3">
+                                                {/* English Card */}
+                                                <div className="p-6 transition-shadow duration-200 bg-gray-100 rounded-lg shadow hover:shadow-lg w-full">
+                                                    <p className="mb-2">
+                                                        <strong>Year:</strong> {item.year}
+                                                    </p>
+                                                    <p className="mb-2">
+                                                        <strong>Month:</strong> {item.month}
+                                                    </p>
+                                                    <p className="mb-2">
+                                                        <strong>Background:</strong> {item.background}
+                                                    </p>
+                                                </div>
+
+                                                {/* Japanese Card */}
+                                                <div className="p-6 transition-shadow duration-200 bg-gray-100 rounded-lg shadow hover:shadow-lg w-full">
+                                                    <p className="mb-2">
+                                                        <strong>年:</strong> {item.yearJapan} {/* Japanese label for 'Year' */}
+                                                    </p>
+                                                    <p className="mb-2">
+                                                        <strong>月:</strong> {item.monthJapan} {/* Japanese label for 'Month' */}
+                                                    </p>
+                                                    <p className="mb-2">
+                                                        <strong>教育  / 職歴:</strong> {item.backgroundJapan} {/* Japanese label for 'Background' */}
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        ))}
+                                    </div>
+
+
+                                )
+                            },
+                            {
+                                title: "Work History / 職歴", 
+                                icon: <FaBriefcase />, 
+                                content: (
+                                    <div className="gap-6">
+                                        {user.workHistory?.map((item, index) => (
+                                            <div key={index} className="flex gap-4 mb-3">
+                                                {/* English Card */}
+                                                <div className="p-6 transition-shadow duration-200 bg-gray-100 rounded-lg shadow hover:shadow-lg w-full">
+                                                    <p className="mb-2">
+                                                        <strong>Year:</strong> {item.year}
+                                                    </p>
+                                                    <p className="mb-2">
+                                                        <strong>Month:</strong> {item.month}
+                                                    </p>
+                                                    <p className="mb-2">
+                                                        <strong>Company Name:</strong> {item.companyName}
+                                                    </p>
+                                                    <p className="mb-2">
+                                                        <strong>Occupation:</strong> {item.occupation}
+                                                    </p>
+                                                    <p className="mb-2">
+                                                        <strong>Location:</strong> {item.location}
+                                                    </p>
+                                                </div>
+                                
+                                                {/* Japanese Card */}
+                                                <div className="p-6 transition-shadow duration-200 bg-gray-100 rounded-lg shadow hover:shadow-lg w-full">
+                                                    <p className="mb-2">
+                                                        <strong>年:</strong> {item.yearJapan} {/* Japanese label for 'Year' */}
+                                                    </p>
+                                                    <p className="mb-2">
+                                                        <strong>月:</strong> {item.monthJapan} {/* Japanese label for 'Month' */}
+                                                    </p>
+                                                    <p className="mb-2">
+                                                        <strong>会社名:</strong> {item.companyNameJapan} {/* Japanese label for 'Company Name' */}
+                                                    </p>
+                                                    <p className="mb-2">
+                                                        <strong>職業:</strong> {item.occupationJapan} {/* Japanese label for 'Occupation' */}
+                                                    </p>
+                                                    <p className="mb-2">
+                                                        <strong>所在地:</strong> {item.locationJapan} {/* Japanese label for 'Location' */}
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        ))}
+                                    </div>
+                                )
+                                
+                            },
+                            
+                            {
+                                title: "Qualifications (資格) Licenses (ライセンス) Certifications (認証) Awards", 
+                                icon: <FaTrophy />, 
+                                content: (
+                                    <div className="gap-6">
+                                        {user.qualifications?.map((item, index) => (
+                                            <div key={index} className="flex gap-4 mb-3">
+                                                {/* English Card */}
+                                                <div className="p-6 transition-shadow duration-200 bg-gray-100 rounded-lg shadow hover:shadow-lg w-full">
+                                                    <p className="mb-2">
+                                                        <strong>Year:</strong> {item.year}
+                                                    </p>
+                                                    <p className="mb-2">
+                                                        <strong>Month:</strong> {item.month}
+                                                    </p>
+                                                    <p className="mb-2">
+                                                        <strong>Qualification:</strong> {item.qualification}
+                                                    </p>
+                                                </div>
+                                
+                                                {/* Japanese Card */}
+                                                <div className="p-6 transition-shadow duration-200 bg-gray-100 rounded-lg shadow hover:shadow-lg w-full">
+                                                    <p className="mb-2">
+                                                        <strong>年:</strong> {item.yearJapan} {/* Japanese label for 'Year' */}
+                                                    </p>
+                                                    <p className="mb-2">
+                                                        <strong>月:</strong> {item.monthJapan} {/* Japanese label for 'Month' */}
+                                                    </p>
+                                                    <p className="mb-2">
+                                                        <strong>資格:</strong> {item.qualificationJapan} {/* Japanese label for 'Qualification' */}
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        ))}
+                                    </div>
+                                )
+                                
+                            },
+                            {
+                                title: "File Uploads", 
+                                icon: <FaFile />, 
+                                content: (
+                                    <div className="gap-6">
+                                            <div className="grid grid-cols-3 gap-4 mb-3">
+                                                <div className="p-6 transition-shadow duration-200 bg-gray-100 rounded-lg shadow hover:shadow-lg w-full">
+                                                    <p className="mb-2">
+                                                        <strong>Personal Photo / 個人写真</strong> {}
+                                                    </p>
+                                                    <p className="mb-2">
+                                                    <a href={getLink(user.personalPhoto)} target="_blank" rel="noopener noreferrer">
+    View CV
+  </a>
+                                                    </p>
+                     
+                                                </div>
+                                
+                                                <div className="p-6 transition-shadow duration-200 bg-gray-100 rounded-lg shadow hover:shadow-lg w-full">
+                                                    <p className="mb-2">
+                                                        <strong>年:</strong> {}
+                                                    </p>
+                           
+                                                </div>
+                                            </div>
+                                           
+                                    </div>
+                                )
+                            },
+                   
+                 
+
                         ];
 
                         sections.forEach((section) => {
@@ -154,8 +362,8 @@ function DataFormDisplay() {
                         return pages;
                     })()}
 
-                    <button 
-                        onClick={handlePrint} 
+                    <button
+                        onClick={handlePrint}
                         className="flex items-center justify-center px-4 py-2 mt-4 text-white transition duration-200 bg-blue-500 rounded hover:bg-blue-600 print:hidden" // Hide on print
                     >
                         <FaPrint className="mr-2" /> Print this data

@@ -314,8 +314,15 @@ function DataForm({ onSubmit }) {
 
     return (
         <form className="p-6 bg-gray-100 rounded-lg shadow-lg">
-            <h2 className="mb-6 text-3xl font-bold text-gray-800">General Info / 一般情報</h2>
-
+            <div className='flex justify-between mb-5'>
+                <h2 className="mb-6 text-3xl font-bold text-gray-800">General Info / 一般情報</h2>
+                <button
+                        onClick={() => navigate('/dashboard')}
+                        className="flex items-center px-4 py-2 text-white transition duration-200 ease-in-out bg-gray-600 rounded-md hover:bg-gray-700"
+                    >
+                        Back to Dashboard
+                    </button>
+            </div>
             {/* General Info 試料*/}
             <div className="grid grid-cols-1 gap-4 mb-4 md:grid-cols-2">
                 <div>
@@ -498,7 +505,7 @@ function DataForm({ onSubmit }) {
                     <input type="number" name="weight" value={formState.weight} onChange={handleChange} className="w-full p-2 border" />
                 </div>
                 <div className="mb-4">
-                    <label className="block mb-2 font-bold">Weight</label>
+                    <label className="block mb-2 font-bold">重さ</label>
                     <input type="number" name="weight" value={formState.weight} onChange={handleChange} className="w-full p-2 border" />
                 </div>
 
@@ -635,7 +642,7 @@ function DataForm({ onSubmit }) {
 
 
             {/* Qualifications Section */}
-            <h3 className="mt-6 mb-2 text-2xl font-bold text-gray-700">Qualifications(資格) / Licenses(ライセンス) / Certifications(認証)</h3>
+            <h3 className="mt-6 mb-2 text-2xl font-bold text-gray-700">Qualifications(資格) Licenses(ライセンス) Certifications(認証)</h3>
             {formState.qualifications.map((item, index) => (
                 <div key={index} className="grid grid-cols-1 gap-4 mb-4 md:grid-cols-3 lg:grid-cols-3">
                     <input type="text" name="year" placeholder="Year" value={item.year} onChange={(e) => handleDynamicChange(index, 'qualifications', e)} className="flex-1 p-3 border rounded-md" />
