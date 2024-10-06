@@ -5,7 +5,7 @@ import axios from 'axios';
 function DataForm({ onSubmit }) {
     const location = useLocation();
     const { user } = location.state ? location.state : {};
-    console.log("user", user);
+const BASE_URL = process.env.REACT_APP_BASE_URL_API;
 
 
     const [formState, setFormState] = useState({
@@ -167,9 +167,7 @@ function DataForm({ onSubmit }) {
         }
 
 
-        console.log("formState", formState);
-        console.log("formData", formData);
-        axios.post('http://localhost:8081/api/applicant/', formData, {
+        axios.post(`${BASE_URL}/api/applicant/`, formData, {
             headers: {
                 'Content-Type': 'multipart/form-data'
             }
@@ -298,7 +296,7 @@ function DataForm({ onSubmit }) {
         }
 
 
-        axios.put(`http://localhost:8081/api/applicant/${user.id}`, formData, {
+        axios.put(`${BASE_URL}/api/applicant/${user.id}`, formData, {
             headers: {
                 'Content-Type': 'multipart/form-data'
             }

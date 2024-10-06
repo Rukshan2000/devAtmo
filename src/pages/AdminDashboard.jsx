@@ -19,12 +19,13 @@ const AdminDashboard = () => {
     const [searchTerm, setSearchTerm] = useState('');
     const [currentPage, setCurrentPage] = useState(1);
     const usersPerPage = 4; // Number of users displayed per page
-
+    const BASE_URL = process.env.REACT_APP_BASE_URL_API;
+    
     const navigate = useNavigate();
 
     useEffect(() => {
         
-        axios.get('http://localhost:8081/api/applicant/').then((response) => {
+        axios.get(`${BASE_URL}/api/applicant/`).then((response) => {
             setUserData(response.data.data);
             
         }).catch((error) => {
@@ -38,7 +39,7 @@ const AdminDashboard = () => {
 
     // Handle user actions
     const handleView = (id) => {
-        axios.get(`http://localhost:8081/api/applicant/${id}`).then((response) => {
+        axios.get(`${BASE_URL}/api/applicant/${id}`).then((response) => {
             const user = response.data.data;
             navigate('/display', { state: { user } })
         }).catch((error) => {
@@ -47,7 +48,7 @@ const AdminDashboard = () => {
     };
 
     const handleEdit = (id) => {
-        axios.get(`http://localhost:8081/api/applicant/${id}`).then((response) => {
+        axios.get(`${BASE_URL}/api/applicant/${id}`).then((response) => {
             const user = response.data.data;
             navigate('/editdata', { state: { user } })
         }).catch((error) => {
@@ -59,7 +60,7 @@ const AdminDashboard = () => {
     const handleDelete = (id) => {
         if (window.confirm('Are you sure you want to delete this user?')) {
 
-            axios.delete(`http://localhost:8081/api/applicant/${id}`).then((response) => {
+            axios.delete(`${BASE_URL}/api/applicant/${id}`).then((response) => {
                 console.log(response.data);
             }).catch((error) => {
                 console.log(error);
