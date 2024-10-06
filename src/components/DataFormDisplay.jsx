@@ -6,6 +6,7 @@ import { FaUser, FaGraduationCap, FaBriefcase, FaTrophy, FaPrint, FaPumpMedical,
 function DataFormDisplay() {
     const location = useLocation();
     const { user } = location.state;
+    console.log("user", user);
 
     const formRef = useRef();
     const navigate = useNavigate();
@@ -20,28 +21,18 @@ function DataFormDisplay() {
         return contentHeight > A4HeightInPx;
     };
 
-const  {fileLink,setFileLink} = useState('');
+    // Function to create a full link for viewing files
+    const getViewLink = (filePath) => {
+        return `http://localhost:8081/${filePath.replace(/\\/g, '/')}`;  // Replace backslashes with forward slashes
+    };
 
-
-
-const getLink = (dblink) => {
-    const baseURL = 'http://localhost:8081/';
-    
-    // Replace backslashes with forward slashes and construct the link
-    if (dblink) {
-      const db = dblink.split('\\');
-      // Ensure that the split array has more than 1 element
-      if (db.length > 1) {
-        setFileLink(`${baseURL}${db[1]}`);
-      } else {
-        setFileLink(`${baseURL}${dblink.replace(/\\/g, '/')}`);
-      }
-    } else {
-      setFileLink('');
-    }
-
-    return fileLink;
-  };
+    // Function to trigger a download for a file
+    const handleDownload = (filePath) => {
+        const link = document.createElement('a');
+        link.href = getViewLink(filePath);
+        link.download = true;  // Optional: Trigger download
+        link.click();
+    };
 
     return (
         <div className="flex flex-col min-h-screen bg-gray-50">
@@ -69,7 +60,7 @@ const getLink = (dblink) => {
                         let totalHeight = 0;
 
                         const sections = [
-                           
+
                             {
                                 title: "General Information / 般情報", icon: <FaUser />, content: (
                                     <div>
@@ -196,8 +187,8 @@ const getLink = (dblink) => {
                                 )
                             },
                             {
-                                title: "Work History / 職歴", 
-                                icon: <FaBriefcase />, 
+                                title: "Work History / 職歴",
+                                icon: <FaBriefcase />,
                                 content: (
                                     <div className="gap-6">
                                         {user.workHistory?.map((item, index) => (
@@ -220,7 +211,7 @@ const getLink = (dblink) => {
                                                         <strong>Location:</strong> {item.location}
                                                     </p>
                                                 </div>
-                                
+
                                                 {/* Japanese Card */}
                                                 <div className="p-6 transition-shadow duration-200 bg-gray-100 rounded-lg shadow hover:shadow-lg w-full">
                                                     <p className="mb-2">
@@ -243,12 +234,12 @@ const getLink = (dblink) => {
                                         ))}
                                     </div>
                                 )
-                                
+
                             },
-                            
+
                             {
-                                title: "Qualifications (資格) Licenses (ライセンス) Certifications (認証) Awards", 
-                                icon: <FaTrophy />, 
+                                title: "Qualifications (資格) Licenses (ライセンス) Certifications (認証) Awards",
+                                icon: <FaTrophy />,
                                 content: (
                                     <div className="gap-6">
                                         {user.qualifications?.map((item, index) => (
@@ -265,7 +256,7 @@ const getLink = (dblink) => {
                                                         <strong>Qualification:</strong> {item.qualification}
                                                     </p>
                                                 </div>
-                                
+
                                                 {/* Japanese Card */}
                                                 <div className="p-6 transition-shadow duration-200 bg-gray-100 rounded-lg shadow hover:shadow-lg w-full">
                                                     <p className="mb-2">
@@ -282,39 +273,168 @@ const getLink = (dblink) => {
                                         ))}
                                     </div>
                                 )
-                                
+
                             },
                             {
-                                title: "File Uploads", 
-                                icon: <FaFile />, 
+                                title: "File Uploads",
+                                icon: <FaFile />,
                                 content: (
                                     <div className="gap-6">
-                                            <div className="grid grid-cols-3 gap-4 mb-3">
+                                        <div className="grid grid-cols-3 gap-4 mb-3">
+
+                                            {user && user.personalPhoto !== "null" && (
                                                 <div className="p-6 transition-shadow duration-200 bg-gray-100 rounded-lg shadow hover:shadow-lg w-full">
                                                     <p className="mb-2">
-                                                        <strong>Personal Photo / 個人写真</strong> {}
+                                                        <strong>Personal Photo<br></br> 個人写真</strong>
                                                     </p>
-                                                    <p className="mb-2">
-                                                    <a href={getLink(user.personalPhoto)} target="_blank" rel="noopener noreferrer">
-    View CV
-  </a>
-                                                    </p>
-                     
+                                                    <div className="mb-2 flex">
+                                                        <button
+                                                            onClick={() => window.open(getViewLink(user.personalPhoto), '_blank')}
+                                                            className="mr-2 px-4 py-2 bg-blue-600 text-white rounded"
+                                                        >
+                                                            View
+                                                        </button>
+                                                    </div>
                                                 </div>
-                                
+                                            )}
+
+                                            {user && user.cv !== "null" && (
                                                 <div className="p-6 transition-shadow duration-200 bg-gray-100 rounded-lg shadow hover:shadow-lg w-full">
                                                     <p className="mb-2">
-                                                        <strong>年:</strong> {}
+                                                        <strong>CV<br></br> 履歴書</strong>
                                                     </p>
-                           
+                                                    <div className="mb-2 flex">
+                                                        <button
+                                                            onClick={() => handleDownload(user.cv)}
+                                                            className="px-4 py-2 bg-green-600 text-white rounded"
+                                                        >
+                                                            Download
+                                                        </button>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                           
+                                            )}
+
+                                            {user && user.interview !== "null"  && (
+                                                <div className="p-6 transition-shadow duration-200 bg-gray-100 rounded-lg shadow hover:shadow-lg w-full">
+                                                    <p className="mb-2">
+                                                        <strong>Interview<br></br> インタビュー</strong>
+                                                    </p>
+                                                    <div className="mb-2 flex">
+                                                        <button
+                                                            onClick={() => handleDownload(user.interview)}
+                                                            className="px-4 py-2 bg-green-600 text-white rounded"
+                                                        >
+                                                            Download
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            )}
+
+                                            {user && user.ptTest !== "null" && (
+                                                <div className="p-6 transition-shadow duration-200 bg-gray-100 rounded-lg shadow hover:shadow-lg w-full">
+                                                    <p className="mb-2">
+                                                        <strong>PT Test<br></br> PTテスト</strong>
+                                                    </p>
+                                                    <div className="mb-2 flex">
+                                                        <button
+                                                            onClick={() => handleDownload(user.ptTest)}
+                                                            className="px-4 py-2 bg-green-600 text-white rounded"
+                                                        >
+                                                            Download
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            )}
+
+                                            {user && user.ptTestCertificate !== "null" && (
+                                                <div className="p-6 transition-shadow duration-200 bg-gray-100 rounded-lg shadow hover:shadow-lg w-full">
+                                                    <p className="mb-2">
+                                                        <strong>PT Test Certificate<br></br> Ptテスト証明書</strong>
+                                                    </p>
+                                                    <div className="mb-2 flex">
+                                                        <button
+                                                            onClick={() => handleDownload(user.ptTestCertificate)}
+                                                            className="px-4 py-2 bg-green-600 text-white rounded"
+                                                        >
+                                                            Download
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            )}
+
+                                            {user && user.passportCopy !== "null" && (
+                                                <div className="p-6 transition-shadow duration-200 bg-gray-100 rounded-lg shadow hover:shadow-lg w-full">
+                                                    <p className="mb-2">
+                                                        <strong>Passport Copy<br></br> パスポートコピー</strong>
+                                                    </p>
+                                                    <div className="mb-2 flex">
+                                                        <button
+                                                            onClick={() => handleDownload(user.passportCopy)}
+                                                            className="px-4 py-2 bg-green-600 text-white rounded"
+                                                        >
+                                                            Download
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            )}
+
+                                            {user && user.driverLicense !== "null" && (
+                                                <div className="p-6 transition-shadow duration-200 bg-gray-100 rounded-lg shadow hover:shadow-lg w-full">
+                                                    <p className="mb-2">
+                                                        <strong>Driver License<br></br> 運転免許証</strong>
+                                                    </p>
+                                                    <div className="mb-2 flex">
+                                                        <button
+                                                            onClick={() => handleDownload(user.driverLicense)}
+                                                            className="px-4 py-2 bg-green-600 text-white rounded"
+                                                        >
+                                                            Download
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            )}
+
+                                            {user && user.qualificationEducation !== "null" && (
+                                                <div className="p-6 transition-shadow duration-200 bg-gray-100 rounded-lg shadow hover:shadow-lg w-full">
+                                                    <p className="mb-2">
+                                                        <strong>Qualification - Education</strong>
+                                                    </p>
+                                                    <div className="mb-2 flex">
+                                                        <button
+                                                            onClick={() => handleDownload(user.qualificationEducation)}
+                                                            className="px-4 py-2 bg-green-600 text-white rounded"
+                                                        >
+                                                            Download
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            )}
+
+                                            {user && user.qualificationWorking !== "null" && (
+                                                <div className="p-6 transition-shadow duration-200 bg-gray-100 rounded-lg shadow hover:shadow-lg w-full">
+                                                    <p className="mb-2">
+                                                        <strong>Qualification - Working<br></br> 働く資格</strong>
+                                                    </p>
+                                                    <div className="mb-2 flex">
+                                                        <button
+                                                            onClick={() => handleDownload(user.qualificationWorking)}
+                                                            className="px-4 py-2 bg-green-600 text-white rounded"
+                                                        >
+                                                            Download
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            )}
+
+
+
+                                        </div>
+
                                     </div>
                                 )
                             },
-                   
-                 
+
+
 
                         ];
 
