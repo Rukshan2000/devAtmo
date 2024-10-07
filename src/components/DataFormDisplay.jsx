@@ -9,7 +9,8 @@ function DataFormDisplay() {
 
     const formRef = useRef();
     const navigate = useNavigate();
-    const BASE_URL = process.env.REACT_APP_BASE_URL_API;
+    const UPLOADED_URL = process.env.REACT_APP_FILE_UPLOAD_URL;
+    console.log( "upload url",UPLOADED_URL );
     
     const handlePrint = useReactToPrint({
         content: () => formRef.current,
@@ -23,7 +24,7 @@ function DataFormDisplay() {
 
     // Function to create a full link for viewing files
     const getViewLink = (filePath) => {
-        return `${BASE_URL}/${filePath.replace(/\\/g, '/')}`;  // Replace backslashes with forward slashes
+        return `${UPLOADED_URL}/${filePath.replace(/\\/g, '/')}`;  // Replace backslashes with forward slashes
     };
 
     // Function to trigger a download for a file
