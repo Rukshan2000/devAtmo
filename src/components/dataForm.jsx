@@ -5,7 +5,7 @@ import axios from 'axios';
 function DataForm({ onSubmit }) {
     const location = useLocation();
     const { user } = location.state ? location.state : {};
-const BASE_URL = process.env.REACT_APP_BASE_URL_API;
+    const BASE_URL = process.env.REACT_APP_BASE_URL_API;
 
 
     const [formState, setFormState] = useState({
@@ -158,9 +158,9 @@ const BASE_URL = process.env.REACT_APP_BASE_URL_API;
             .then(res => {
                 console.log(res);
                 alert('Data has been added');
+                window.location.reload();
             })
             .catch(err => console.log(err));
-        window.location.reload();
     };
 
 
@@ -288,11 +288,11 @@ const BASE_URL = process.env.REACT_APP_BASE_URL_API;
             .then(res => {
                 alert('Data updated successfully');
                 console.log(res);
+                window.location.reload();
             })
             .catch((error) => {
                 console.log(error);
             });
-        window.location.reload();
     };
 
     return (
@@ -300,11 +300,11 @@ const BASE_URL = process.env.REACT_APP_BASE_URL_API;
             <div className='flex justify-between mb-5'>
                 <h2 className="mb-6 text-3xl font-bold text-gray-800">General Info / 一般情報</h2>
                 <button
-                        onClick={() => navigate('/dashboard')}
-                        className="flex items-center px-4 py-2 text-white transition duration-200 ease-in-out bg-gray-600 rounded-md hover:bg-gray-700"
-                    >
-                        Back to Dashboard
-                    </button>
+                    onClick={() => navigate('/dashboard')}
+                    className="flex items-center px-4 py-2 text-white transition duration-200 ease-in-out bg-gray-600 rounded-md hover:bg-gray-700"
+                >
+                    Back to Dashboard
+                </button>
             </div>
             {/* General Info 試料*/}
             <div className="grid grid-cols-1 gap-4 mb-4 md:grid-cols-2">
