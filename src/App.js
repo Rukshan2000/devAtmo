@@ -22,7 +22,7 @@ const App = () => {
         {/* Route for the form */}
         <Route path="/login" element={<Login />} /> 
 
-        <Route path="/" element={<PrivateRoute><Form onSubmit={handleFormSubmit} /></PrivateRoute>} />
+        <Route path="/" element={<Form onSubmit={handleFormSubmit} />} />
         <Route path="/editdata" element={ <PrivateRoute><DataForm /></PrivateRoute>} /> 
         <Route path="/display" element={<PrivateRoute><DataFormDisplay /></PrivateRoute>} /> 
         <Route path="/dashboard" element={<PrivateRoute><AdminDashboard /></PrivateRoute>} />
