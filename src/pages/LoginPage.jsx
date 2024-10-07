@@ -14,6 +14,7 @@ const LoginPage = () => {
         // Check username and password
         if (username === 'user' && password === 'password') {
             alert('Login Successful!');
+            localStorage.setItem('isAuthenticated', 'true');
             navigate('/dashboard'); // Redirect to the dashboard
         } else {
             setError('Invalid username or password'); // Set error message

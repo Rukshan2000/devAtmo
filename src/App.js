@@ -7,6 +7,7 @@ import Login from './pages/LoginPage.jsx';
 import AdminDashboard from './pages/AdminDashboard.jsx';
 import DataFormDisplay from './components/DataFormDisplay'; 
 import DataForm from './components/dataForm.jsx';
+import PrivateRoute from './components/PrivateRoute.jsx';
 const App = () => {
   const [formData, setFormData] = useState(null);
 
@@ -19,11 +20,12 @@ const App = () => {
     <BrowserRouter>
       <Routes>
         {/* Route for the form */}
-        <Route path="/" element={<Form onSubmit={handleFormSubmit} />} />
         <Route path="/login" element={<Login />} /> 
-        <Route path="/editdata" element={<DataForm />} /> 
-        <Route path="/display" element={<DataFormDisplay />} /> 
-        <Route path="/dashboard" element={<AdminDashboard />} />
+
+        <Route path="/" element={<PrivateRoute><Form onSubmit={handleFormSubmit} /></PrivateRoute>} />
+        <Route path="/editdata" element={ <PrivateRoute><DataForm /></PrivateRoute>} /> 
+        <Route path="/display" element={<PrivateRoute><DataFormDisplay /></PrivateRoute>} /> 
+        <Route path="/dashboard" element={<PrivateRoute><AdminDashboard /></PrivateRoute>} />
 
       </Routes>
     </BrowserRouter>

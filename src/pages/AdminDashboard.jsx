@@ -161,7 +161,10 @@ const chartOptions = {
             <header className="flex items-center justify-between p-4 bg-white shadow">
                 <h2 className="text-3xl font-semibold text-gray-800">SR Recruitment</h2>
                 <button 
-                    onClick={() => navigate('/login')}
+                    onClick={() => {
+                        localStorage.removeItem('isAuthenticated');
+                        navigate('/login')
+                    }}
                     className="flex items-center px-4 py-2 text-white bg-red-600 rounded-md hover:bg-red-700"
                 >
                     <FaSignOutAlt className="mr-2" />
