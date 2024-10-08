@@ -60,12 +60,15 @@ const AdminDashboard = () => {
     const handleDelete = (id) => {
         if (window.confirm('Are you sure you want to delete this user?')) {
 
-            axios.delete(`${BASE_URL}/api/applicant/${id}`).then((response) => {
+            axios.delete(`${BASE_URL}/api/applicant/${id}`)
+            .then((response) => {
+                console.log(response.data);
+                // alert('User deleted successfully!');
+                window.location.reload();
             }).catch((error) => {
                 console.log(error);
                 alert('Error deleting. Please try again.');
             });
-            window.location.reload();
             // setUserData(userData.filter(user => user.userId !== id));
         }
     };
