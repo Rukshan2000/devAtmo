@@ -303,7 +303,14 @@ function DataForm({ onSubmit }) {
                     onClick={() => navigate('/dashboard')}
                     className="flex items-center px-4 py-2 text-white transition duration-200 ease-in-out bg-gray-600 rounded-md hover:bg-gray-700"
                 >
-                    Back to Dashboard
+                                {
+                user ? (
+                    "Back to Dashboard"
+                ) : (
+                    "Go to Dashboard"
+                )
+            }
+           
                 </button>
             </div>
             {/* General Info 試料*/}
