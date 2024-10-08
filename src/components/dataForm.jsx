@@ -8,6 +8,11 @@ function DataForm({ onSubmit }) {
     const { user } = location.state ? location.state : {};
     const BASE_URL = process.env.REACT_APP_BASE_URL_API;
 
+    // Upload state
+    const [uploading, setUploading] = useState(false);
+    const [uploadCanceled, setUploadCanceled] = useState(false);
+    const [uploadProgress, setUploadProgress] = useState(0);
+
 
     const [formState, setFormState] = useState({
 
@@ -61,6 +66,9 @@ function DataForm({ onSubmit }) {
     const handleSave = (e) => {
         e.preventDefault();
 
+        setUploading(true);
+        setUploadCanceled(false);
+
         const formData = new FormData();
         // Append single fields
         formData.append('fullName', formState.fullName);
@@ -148,22 +156,37 @@ function DataForm({ onSubmit }) {
             formData.append('qualificationWorking', formState.qualificationWorking);
         }
 
+        try {
+            axios.post(`${BASE_URL}/api/applicant/`, formData, {
+                onUploadProgress: progressEvent => {
+                    const percentCompleted = Math.round(
+                        (progressEvent.loaded * 100) / progressEvent.total
+                    );
+                    setUploadProgress(percentCompleted);
+                },
+                cancelToken: new axios.CancelToken((cancel) => {
+                    if (uploadCanceled) cancel('Upload canceled');
+                }),
 
-        axios.post(`${BASE_URL}/api/applicant/`, formData, {
-            headers: {
-                'Content-Type': 'multipart/form-data'
-            }
-        })
-            .then(res => {
-                console.log(res);
-                alert('Data has been added');
-                window.location.reload();
-                window.scrollTo({ top: 0 });
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
             })
-            .catch(err => {
-                console.log(err);
-                alert('Error adding data. Please try again!');
-            });
+                .then(res => {
+                    console.log(res);
+                    setUploading(false);
+                    alert('Data has been added');
+                    window.location.reload();
+                    window.scrollTo({ top: 0 });
+                })
+        } catch (error) {
+            if (axios.isCancel(error)) {
+                alert('File upload canceled.');
+            } else {
+                alert('Error uploading files. Please try again.');
+            }
+            setUploading(false);
+        }
     };
 
 
@@ -195,6 +218,9 @@ function DataForm({ onSubmit }) {
     };
 
     const handleUpdate = () => {
+        setUploading(true);
+        setUploadCanceled(false);
+
         const formData = new FormData();
         // Append single fields
         formData.append('fullName', formState.fullName);
@@ -282,19 +308,40 @@ function DataForm({ onSubmit }) {
             formData.append('qualificationWorking', formState.qualificationWorking);
         }
 
+        try {
+            axios.put(`${BASE_URL}/api/applicant/${user.id}`, formData, {
+                onUploadProgress: (progressEvent) => {
+                    const percentCompleted = Math.round(
+                        (progressEvent.loaded * 100) / progressEvent.total
+                    );
+                    setUploadProgress(percentCompleted);
+                },
+                cancelToken: new axios.CancelToken((cancel) => {
+                    if (uploadCanceled) cancel('Upload canceled');
+                }),
 
-        axios.put(`${BASE_URL}/api/applicant/${user.id}`, formData, {
-            headers: {
-                'Content-Type': 'multipart/form-data'
+
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            }).then(res => {
+                console.log(res);
+                alert('Data updated successfully');
+                navigate('/dashboard');
+            })
+        } catch (error) {
+            if (axios.isCancel(error)) {
+                alert('File upload canceled.');
+            } else {
+                alert('Error uploading files. Please try again.');
             }
-        }).then(res => {
-            console.log(res);
-            alert('Data updated successfully');
-            navigate('/dashboard');
-        }).catch((error) => {
-            console.log(error);
-            alert('Error updating data. Please try again!');
-        });
+            setUploading(false);
+        }
+    };
+
+    const handleCancelUpload = () => {
+        setUploadCanceled(true);
+        setUploading(false);
     };
 
     return (
@@ -722,17 +769,24 @@ function DataForm({ onSubmit }) {
             </div>
 
             {/* Submit Button */}
+
             {
                 user ? (
-                    <button type="button" onClick={handleUpdate} className="px-10 py-5 mt-6 text-white bg-green-600 rounded">
+                    <button type="button" onClick={handleUpdate} className="px-10 py-5 mt-6 text-white bg-green-600 rounded" disabled={uploading}>
                         Update
                     </button>
                 ) : (
-                    <button type="button" onClick={handleSave} className="px-10 py-5 mt-6 text-white bg-green-600 rounded">
+                    <button type="button" onClick={handleSave} className="px-10 py-5 mt-6 text-white bg-green-600 rounded" disabled={uploading}>
                         Submit
                     </button>
                 )
             }
+            {uploading && (
+                <div>
+                    <p>Files are uploading, please wait... ({uploadProgress}%)</p>
+                    {/* <button onClick={handleCancelUpload} className="px-5 py-3 mt-6 text-white bg-red-600 rounded">Cancel Upload</button> */}
+                </div>
+            )}
 
         </form>
     );
