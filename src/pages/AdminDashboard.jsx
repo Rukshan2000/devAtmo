@@ -63,6 +63,7 @@ const AdminDashboard = () => {
             axios.delete(`${BASE_URL}/api/applicant/${id}`).then((response) => {
             }).catch((error) => {
                 console.log(error);
+                alert('Error deleting. Please try again.');
             });
             window.location.reload();
             // setUserData(userData.filter(user => user.userId !== id));

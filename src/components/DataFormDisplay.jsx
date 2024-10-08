@@ -280,7 +280,7 @@ function DataFormDisplay() {
                                 title: "File Uploads",
                                 icon: <FaFile />,
                                 content: (
-                                    <div className="gap-6">
+                                    <div className="gap-6 ">
                                         <div className="grid grid-cols-3 gap-4 mb-3">
 
                                             {user && user.personalPhoto !== "null" && (

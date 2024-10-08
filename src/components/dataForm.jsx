@@ -159,8 +159,12 @@ function DataForm({ onSubmit }) {
                 console.log(res);
                 alert('Data has been added');
                 window.location.reload();
+                window.scrollTo({ top: 0 });
             })
-            .catch(err => console.log(err));
+            .catch(err => {
+                console.log(err);
+                alert('Error adding data. Please try again!');
+            });
     };
 
 
@@ -286,12 +290,14 @@ function DataForm({ onSubmit }) {
             }
         })
             .then(res => {
-                alert('Data updated successfully');
                 console.log(res);
+                alert('Data updated successfully');
                 window.location.reload();
+                window.scrollTo({ top: 0 });
             })
             .catch((error) => {
                 console.log(error);
+                alert('Error updating data. Please try again!');
             });
     };
 
