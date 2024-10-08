@@ -4,6 +4,7 @@ import axios from 'axios';
 
 function DataForm({ onSubmit }) {
     const location = useLocation();
+    const navigate = useNavigate();
     const { user } = location.state ? location.state : {};
     const BASE_URL = process.env.REACT_APP_BASE_URL_API;
 
@@ -51,8 +52,6 @@ function DataForm({ onSubmit }) {
     });
 
 
-
-    const navigate = useNavigate();
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -289,14 +288,13 @@ function DataForm({ onSubmit }) {
                 'Content-Type': 'multipart/form-data'
             }
         }).then(res => {
-                console.log(res);
-                alert('Data updated successfully');
-               navigate('/dashboard');
-            })
-            .catch((error) => {
-                console.log(error);
-                alert('Error updating data. Please try again!');
-            });
+            console.log(res);
+            alert('Data updated successfully');
+            navigate('/dashboard');
+        }).catch((error) => {
+            console.log(error);
+            alert('Error updating data. Please try again!');
+        });
     };
 
     return (
@@ -307,14 +305,14 @@ function DataForm({ onSubmit }) {
                     onClick={() => navigate('/dashboard')}
                     className="flex items-center px-4 py-2 text-white transition duration-200 ease-in-out bg-gray-600 rounded-md hover:bg-gray-700"
                 >
-                                {
-                user ? (
-                    "Back to Dashboard"
-                ) : (
-                    "Go to Dashboard"
-                )
-            }
-           
+                    {
+                        user ? (
+                            "Back to Dashboard"
+                        ) : (
+                            "Go to Dashboard"
+                        )
+                    }
+
                 </button>
             </div>
             {/* General Info 試料*/}
@@ -673,7 +671,7 @@ function DataForm({ onSubmit }) {
 
                 <div className="mb-4">
                     <label className="block mb-2 font-bold">Interview / インタビュー</label>
-                    <input type="file" name="interview" accept=".pdf,.doc,.docx" onChange={handleFileChange} className="w-full p-2 border" />
+                    <input type="file" name="interview" accept="*" onChange={handleFileChange} className="w-full p-2 border" />
                 </div>
 
 
@@ -726,11 +724,11 @@ function DataForm({ onSubmit }) {
             {/* Submit Button */}
             {
                 user ? (
-                    <button onClick={handleUpdate} className="px-4 py-2 mt-6 text-white bg-green-600 rounded">
+                    <button type="button" onClick={handleUpdate} className="px-10 py-5 mt-6 text-white bg-green-600 rounded">
                         Update
                     </button>
                 ) : (
-                    <button onClick={handleSave} className="px-4 py-2 mt-6 text-white bg-green-600 rounded">
+                    <button type="button" onClick={handleSave} className="px-10 py-5 mt-6 text-white bg-green-600 rounded">
                         Submit
                     </button>
                 )
