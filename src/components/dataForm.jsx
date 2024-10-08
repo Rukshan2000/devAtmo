@@ -288,12 +288,10 @@ function DataForm({ onSubmit }) {
             headers: {
                 'Content-Type': 'multipart/form-data'
             }
-        })
-            .then(res => {
+        }).then(res => {
                 console.log(res);
                 alert('Data updated successfully');
-                window.location.reload();
-                window.scrollTo({ top: 0 });
+               navigate('/dashboard');
             })
             .catch((error) => {
                 console.log(error);

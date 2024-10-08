@@ -26,7 +26,9 @@ const AdminDashboard = () => {
     useEffect(() => {
         
         axios.get(`${BASE_URL}/api/applicant/`).then((response) => {
-            setUserData(response.data.data);
+            // Sort by id in descending order            
+            const sortedData = response.data.data.sort((a, b) => b.id - a.id); 
+            setUserData(sortedData);
             
         }).catch((error) => {
             console.log(error);
