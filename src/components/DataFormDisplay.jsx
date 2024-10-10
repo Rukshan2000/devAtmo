@@ -27,13 +27,15 @@ function DataFormDisplay() {
         return `${UPLOADED_URL}/${filePath.replace(/\\/g, '/')}`;  // Replace backslashes with forward slashes
     };
 
-    // Function to trigger a download for a file
-    const handleDownload = (filePath) => {
-        const link = document.createElement('a');
-        link.href = getViewLink(filePath);
-        link.download = true;  // Optional: Trigger download
-        link.click();
-    };
+// Function to trigger a download for a file with a custom name and keep the original extension
+const handleDownload = (filePath, customFileName) => {
+    const fileExtension = filePath.split('.').pop();  // Get the file extension from the file path
+    const link = document.createElement('a');
+    link.href = getViewLink(filePath);  // Ensure getViewLink returns the correct file path URL
+    link.download = `${customFileName}.${fileExtension}`;  // Set the custom file name with the original extension
+    link.click();
+};
+
 
     return (
         <div className="flex flex-col min-h-screen bg-gray-50">
@@ -295,6 +297,13 @@ function DataFormDisplay() {
                                                         >
                                                             View
                                                         </button>
+                                                        <button
+    onClick={() => handleDownload(user.driverLicense, `personal_photo-${user.fullName}`)}
+    className="px-4 py-2 bg-green-600 text-white rounded"
+>
+    Download
+</button>
+
                                                     </div>
                                                 </div>
                                             )}
@@ -308,12 +317,11 @@ function DataFormDisplay() {
                                                         <button
                                                             onClick={() => window.open(getViewLink(user.cv), '_blank')}
                                                             className="mr-2 px-4 py-2 bg-blue-600 text-white rounded"
-                                                        >
-                                                            View
+                                                        >View
                                                         </button>
 
                                                         <button
-                                                            onClick={() => handleDownload(user.cv)}
+                                                            onClick={() => handleDownload(user.cv, `cv-${user.cv}`)}
                                                             className="px-4 py-2 bg-green-600 text-white rounded"
                                                         >
                                                             Download
@@ -328,8 +336,13 @@ function DataFormDisplay() {
                                                         <strong>Interview<br></br> インタビュー</strong>
                                                     </p>
                                                     <div className="mb-2 flex">
+                                                    <button
+                                                            onClick={() => window.open(getViewLink(user.interview), '_blank')}
+                                                            className="mr-2 px-4 py-2 bg-blue-600 text-white rounded"
+                                                        >View
+                                                        </button>
                                                         <button
-                                                            onClick={() => handleDownload(user.interview)}
+                                                            onClick={() => handleDownload(user.interview, `interview-${user.interview}`)}
                                                             className="px-4 py-2 bg-green-600 text-white rounded"
                                                         >
                                                             Download
@@ -344,6 +357,11 @@ function DataFormDisplay() {
                                                         <strong>PT Test<br></br> PTテスト</strong>
                                                     </p>
                                                     <div className="mb-2 flex">
+                                                    <button
+                                                            onClick={() => window.open(getViewLink(user.ptTest), '_blank')}
+                                                            className="mr-2 px-4 py-2 bg-blue-600 text-white rounded"
+                                                        >View
+                                                        </button>
                                                         <button
                                                             onClick={() => handleDownload(user.ptTest)}
                                                             className="px-4 py-2 bg-green-600 text-white rounded"
@@ -360,6 +378,11 @@ function DataFormDisplay() {
                                                         <strong>PT Test Certificate<br></br> Ptテスト証明書</strong>
                                                     </p>
                                                     <div className="mb-2 flex">
+                                                    <button
+                                                            onClick={() => window.open(getViewLink(user.ptTestCertificate), '_blank')}
+                                                            className="mr-2 px-4 py-2 bg-blue-600 text-white rounded"
+                                                        >View
+                                                        </button>
                                                         <button
                                                             onClick={() => handleDownload(user.ptTestCertificate)}
                                                             className="px-4 py-2 bg-green-600 text-white rounded"
@@ -376,6 +399,11 @@ function DataFormDisplay() {
                                                         <strong>Passport Copy<br></br> パスポートコピー</strong>
                                                     </p>
                                                     <div className="mb-2 flex">
+                                                    <button
+                                                            onClick={() => window.open(getViewLink(user.passportCopy), '_blank')}
+                                                            className="mr-2 px-4 py-2 bg-blue-600 text-white rounded"
+                                                        >View
+                                                        </button>
                                                         <button
                                                             onClick={() => handleDownload(user.passportCopy)}
                                                             className="px-4 py-2 bg-green-600 text-white rounded"
@@ -392,6 +420,11 @@ function DataFormDisplay() {
                                                         <strong>Driver License<br></br> 運転免許証</strong>
                                                     </p>
                                                     <div className="mb-2 flex">
+                                                    <button
+                                                            onClick={() => window.open(getViewLink(user.driverLicense), '_blank')}
+                                                            className="mr-2 px-4 py-2 bg-blue-600 text-white rounded"
+                                                        >View
+                                                        </button>
                                                         <button
                                                             onClick={() => handleDownload(user.driverLicense)}
                                                             className="px-4 py-2 bg-green-600 text-white rounded"
@@ -408,6 +441,11 @@ function DataFormDisplay() {
                                                         <strong>Qualification - Education</strong>
                                                     </p>
                                                     <div className="mb-2 flex">
+                                                    <button
+                                                            onClick={() => window.open(getViewLink(user.qualificationEducation), '_blank')}
+                                                            className="mr-2 px-4 py-2 bg-blue-600 text-white rounded"
+                                                        >View
+                                                        </button>
                                                         <button
                                                             onClick={() => handleDownload(user.qualificationEducation)}
                                                             className="px-4 py-2 bg-green-600 text-white rounded"
@@ -424,6 +462,11 @@ function DataFormDisplay() {
                                                         <strong>Qualification - Working {index + 1}<br></br> 働く資格</strong>
                                                     </p>
                                                     <div className="mb-2 flex">
+                                                    <button
+                                                            onClick={() => window.open(getViewLink(file), '_blank')}
+                                                            className="mr-2 px-4 py-2 bg-blue-600 text-white rounded"
+                                                        >View
+                                                        </button>
                                                         <button
                                                             onClick={() => handleDownload(file)} // Pass the file directly from the map
                                                             className="px-4 py-2 bg-green-600 text-white rounded"
