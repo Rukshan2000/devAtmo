@@ -355,7 +355,7 @@ function DataForm({ onSubmit }) {
     };
 
     return (
-        <form className="p-6 bg-gray-100 rounded-lg shadow-lg">
+        <form className="py-32 px-20 bg-gray-100 rounded-lg shadow-lg">
             <div className='flex justify-between mb-5'>
                 <h2 className="mb-6 text-3xl font-bold text-gray-800">General Info / 一般情報</h2>
                 <button
