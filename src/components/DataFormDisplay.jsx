@@ -321,7 +321,7 @@ const handleDownload = (filePath, customFileName) => {
                                                         </button>
 
                                                         <button
-                                                            onClick={() => handleDownload(user.cv, `cv-${user.cv}`)}
+                                                            onClick={() => handleDownload(user.cv, `cv-${user.fullName}`)}
                                                             className="px-4 py-2 bg-green-600 text-white rounded"
                                                         >
                                                             Download
@@ -342,7 +342,7 @@ const handleDownload = (filePath, customFileName) => {
                                                         >View
                                                         </button>
                                                         <button
-                                                            onClick={() => handleDownload(user.interview, `interview-${user.interview}`)}
+                                                            onClick={() => handleDownload(user.interview, `interview-${user.fullName}`)}
                                                             className="px-4 py-2 bg-green-600 text-white rounded"
                                                         >
                                                             Download
@@ -363,7 +363,7 @@ const handleDownload = (filePath, customFileName) => {
                                                         >View
                                                         </button>
                                                         <button
-                                                            onClick={() => handleDownload(user.ptTest)}
+                                                            onClick={() => handleDownload(user.ptTest, `pt_test-${user.fullName}`)}
                                                             className="px-4 py-2 bg-green-600 text-white rounded"
                                                         >
                                                             Download
@@ -384,7 +384,7 @@ const handleDownload = (filePath, customFileName) => {
                                                         >View
                                                         </button>
                                                         <button
-                                                            onClick={() => handleDownload(user.ptTestCertificate)}
+                                                            onClick={() => handleDownload(user.ptTestCertificate, `pt_test_certificate-${user.fullName}`)}
                                                             className="px-4 py-2 bg-green-600 text-white rounded"
                                                         >
                                                             Download
@@ -405,7 +405,7 @@ const handleDownload = (filePath, customFileName) => {
                                                         >View
                                                         </button>
                                                         <button
-                                                            onClick={() => handleDownload(user.passportCopy)}
+                                                            onClick={() => handleDownload(user.passportCopy, `passport_copy-${user.fullName}`)}
                                                             className="px-4 py-2 bg-green-600 text-white rounded"
                                                         >
                                                             Download
@@ -426,7 +426,7 @@ const handleDownload = (filePath, customFileName) => {
                                                         >View
                                                         </button>
                                                         <button
-                                                            onClick={() => handleDownload(user.driverLicense)}
+                                                            onClick={() => handleDownload(user.driverLicense, `driver_license-${user.fullName}`)}
                                                             className="px-4 py-2 bg-green-600 text-white rounded"
                                                         >
                                                             Download
@@ -447,7 +447,7 @@ const handleDownload = (filePath, customFileName) => {
                                                         >View
                                                         </button>
                                                         <button
-                                                            onClick={() => handleDownload(user.qualificationEducation)}
+                                                            onClick={() => handleDownload(user.qualificationEducation, `qualification_education-${user.fullName}`)}
                                                             className="px-4 py-2 bg-green-600 text-white rounded"
                                                         >
                                                             Download
@@ -456,19 +456,19 @@ const handleDownload = (filePath, customFileName) => {
                                                 </div>
                                             )}
 
-                                            {user && user.qualificationWorking !== "null" && user.qualificationWorking.map((file, index) => (
+                                            {user && user.qualificationWorking !== "null" && user.qualificationWorking.map((filePath, index) => (
                                                 <div key={index} className="p-6 transition-shadow duration-200 bg-gray-100 rounded-lg shadow hover:shadow-lg w-full">
                                                     <p className="mb-2">
                                                         <strong>Qualification - Working {index + 1}<br></br> 働く資格</strong>
                                                     </p>
                                                     <div className="mb-2 flex">
                                                     <button
-                                                            onClick={() => window.open(getViewLink(file), '_blank')}
+                                                            onClick={() => window.open(getViewLink(filePath), '_blank')}
                                                             className="mr-2 px-4 py-2 bg-blue-600 text-white rounded"
                                                         >View
                                                         </button>
                                                         <button
-                                                            onClick={() => handleDownload(file)} // Pass the file directly from the map
+                                                            onClick={() => handleDownload(filePath, `qualification_working-${user.fullName}`)} // Pass the file directly from the map
                                                             className="px-4 py-2 bg-green-600 text-white rounded"
                                                         >
                                                             Download
