@@ -10,7 +10,7 @@ function DataFormDisplay() {
     const formRef = useRef();
     const navigate = useNavigate();
     const UPLOADED_URL = process.env.REACT_APP_FILE_UPLOAD_URL;
-    console.log( "upload url",UPLOADED_URL );
+    console.log("upload url", UPLOADED_URL);
 
     const handlePrint = useReactToPrint({
         content: () => formRef.current,
@@ -305,6 +305,13 @@ function DataFormDisplay() {
                                                         <strong>CV<br></br> 履歴書</strong>
                                                     </p>
                                                     <div className="mb-2 flex">
+                                                        <button
+                                                            onClick={() => window.open(getViewLink(user.cv), '_blank')}
+                                                            className="mr-2 px-4 py-2 bg-blue-600 text-white rounded"
+                                                        >
+                                                            View
+                                                        </button>
+
                                                         <button
                                                             onClick={() => handleDownload(user.cv)}
                                                             className="px-4 py-2 bg-green-600 text-white rounded"
