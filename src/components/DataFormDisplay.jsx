@@ -11,7 +11,7 @@ function DataFormDisplay() {
     const navigate = useNavigate();
     const UPLOADED_URL = process.env.REACT_APP_FILE_UPLOAD_URL;
     console.log( "upload url",UPLOADED_URL );
-    
+
     const handlePrint = useReactToPrint({
         content: () => formRef.current,
     });
@@ -315,7 +315,7 @@ function DataFormDisplay() {
                                                 </div>
                                             )}
 
-                                            {user && user.interview !== "null"  && (
+                                            {user && user.interview !== "null" && (
                                                 <div className="p-6 transition-shadow duration-200 bg-gray-100 rounded-lg shadow hover:shadow-lg w-full">
                                                     <p className="mb-2">
                                                         <strong>Interview<br></br> インタビュー</strong>
@@ -411,21 +411,22 @@ function DataFormDisplay() {
                                                 </div>
                                             )}
 
-                                            {user && user.qualificationWorking !== "null" && (
-                                                <div className="p-6 transition-shadow duration-200 bg-gray-100 rounded-lg shadow hover:shadow-lg w-full">
+                                            {user && user.qualificationWorking !== "null" && user.qualificationWorking.map((file, index) => (
+                                                <div key={index} className="p-6 transition-shadow duration-200 bg-gray-100 rounded-lg shadow hover:shadow-lg w-full">
                                                     <p className="mb-2">
-                                                        <strong>Qualification - Working<br></br> 働く資格</strong>
+                                                        <strong>Qualification - Working {index + 1}<br></br> 働く資格</strong>
                                                     </p>
                                                     <div className="mb-2 flex">
                                                         <button
-                                                            onClick={() => handleDownload(user.qualificationWorking)}
+                                                            onClick={() => handleDownload(file)} // Pass the file directly from the map
                                                             className="px-4 py-2 bg-green-600 text-white rounded"
                                                         >
                                                             Download
                                                         </button>
                                                     </div>
                                                 </div>
-                                            )}
+                                            ))}
+
 
 
 

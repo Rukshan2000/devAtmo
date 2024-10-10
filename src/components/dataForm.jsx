@@ -153,7 +153,9 @@ function DataForm({ onSubmit }) {
             formData.append('qualificationEducation', formState.qualificationEducation);
         }
         if (formState.qualificationWorking) {
-            formData.append('qualificationWorking', formState.qualificationWorking);
+            Array.from(formState.qualificationWorking).forEach(file => {
+                formData.append('qualificationWorking', file);
+            });
         }
 
         try {
@@ -193,7 +195,13 @@ function DataForm({ onSubmit }) {
 
     const handleFileChange = (e) => {
         const { name, files } = e.target;
-        setFormState({ ...formState, [name]: files[0] }); // Save the first file
+        // If the input allows multiple files, save all files as an array.
+        // Otherwise, save only the first file.
+        if (e.target.multiple) {
+            setFormState({ ...formState, [name]: files });  // Store all files for multi-upload
+        } else {
+            setFormState({ ...formState, [name]: files[0] });  // Store single file
+        }
     };
 
     const handleDynamicChange = (index, field, e) => {
@@ -301,12 +309,14 @@ function DataForm({ onSubmit }) {
         if (formState.driverLicense) {
             formData.append('driverLicense', formState.driverLicense);
         }
-        if (formState.qualificationEducation) {
+     if (formState.qualificationEducation) {
             formData.append('qualificationEducation', formState.qualificationEducation);
-        }
-        if (formState.qualificationWorking) {
-            formData.append('qualificationWorking', formState.qualificationWorking);
-        }
+    }
+    if (formState.qualificationWorking) {
+        Array.from(formState.qualificationWorking).forEach(file => {
+            formData.append('qualificationWorking', file);
+        });
+    }
 
         try {
             axios.put(`${BASE_URL}/api/applicant/${user.id}`, formData, {
@@ -762,7 +772,7 @@ function DataForm({ onSubmit }) {
 
                 <div className="mb-4">
                     <label className="block mb-2 font-bold">Qualification - Working / 働く資格</label>
-                    <input type="file" name="qualificationWorking" accept=".pdf,.doc,.docx" onChange={handleFileChange} className="w-full p-2 border" />
+                    <input type="file" name="qualificationWorking" accept=".pdf,.doc,.docx" onChange={handleFileChange} className="w-full p-2 border" multiple />
                 </div>
 
 
