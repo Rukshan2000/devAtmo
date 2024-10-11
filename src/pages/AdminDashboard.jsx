@@ -43,8 +43,8 @@ const AdminDashboard = () => {
     const handleView = (id) => {
         axios.get(`${BASE_URL}/api/applicant/${id}`).then((response) => {
             const user = response.data.data;
-            
-            user.qualificationWorking = user.qualificationWorking.split(',').map(item => item.trim());
+            console.log("view user", user.qualificationWorking[0]);
+            user.qualificationWorking =user.qualificationWorking[0]==="n"? "null": user.qualificationWorking.split(',').map(item => item.trim());
             navigate('/display', { state: { user } });
         }).catch((error) => {
             console.log(error);
