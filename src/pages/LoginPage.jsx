@@ -12,7 +12,7 @@ const LoginPage = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         // Check username and password
-        if (username === 'sradmin' && password === 'fO&nUR6gXQ') {
+        if (username === 'sradmin' && password === 'clear123') {
             alert('Login Successful!');
             localStorage.setItem('isAuthenticated', 'true');
             navigate('/dashboard'); // Redirect to the dashboard
