@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { GrMultiple } from "react-icons/gr";
 
 function DataForm({ onSubmit }) {
     const location = useLocation();
@@ -763,7 +764,7 @@ function DataForm({ onSubmit }) {
 
 
                 <div className="mb-4">
-                    <label className="block mb-2 font-bold">Qualification - Education /</label>
+                    <label className="block mb-2 font-bold">Qualification - Education /  資格  -  学歴</label>
                     <input type="file" name="qualificationEducation" accept=".pdf,.doc,.docx" onChange={handleFileChange} className="w-full p-2 border" />
                 </div>
 
@@ -771,7 +772,7 @@ function DataForm({ onSubmit }) {
 
 
                 <div className="mb-4">
-                    <label className="block mb-2 font-bold">Qualification - Working / 働く資格</label>
+                    <label className="block mb-2 font-bold">Qualification - Working / 働く資格 &nbsp;&nbsp;&nbsp;<GrMultiple className="inline" /></label>
                     <input type="file" name="qualificationWorking" accept=".pdf,.doc,.docx" onChange={handleFileChange} className="w-full p-2 border" multiple />
                 </div>
 

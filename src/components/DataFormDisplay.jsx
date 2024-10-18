@@ -379,7 +379,7 @@ function DataFormDisplay() {
 {user && user.qualificationEducation !== "null" && (
                                                 <div className="p-6 transition-shadow duration-200 bg-gray-100 rounded-lg shadow hover:shadow-lg w-full">
                                                     <p className="mb-2">
-                                                        <strong>Qualification - Education</strong>
+                                                        <strong>Qualification - Education <br></br> 資格  -  学歴</strong>
                                                     </p>
                                                     <div className="mb-2 flex">
                                                         <button
@@ -422,7 +422,7 @@ function DataFormDisplay() {
                                             {user && user.interview !== "null" && (
                                                 <div className="p-6 transition-shadow duration-200 bg-gray-100 rounded-lg shadow hover:shadow-lg w-full">
                                                     <div className="mb-2">
-                                                        <div className="flex">
+                                                        <div className="flex justify-between">
                                                             <strong>Interview </strong>
                                                             <FaVideo/>
                                                         </div>
@@ -447,7 +447,11 @@ function DataFormDisplay() {
                                             {user && user.ptTest !== "null" && (
                                                 <div className="p-6 transition-shadow duration-200 bg-gray-100 rounded-lg shadow hover:shadow-lg w-full">
                                                     <p className="mb-2">
-                                                        <strong>PT Test<br></br> PTテスト</strong>
+                                                    <div className="flex justify-between">
+                                                            <strong>PT Test </strong>
+                                                            <FaVideo/>
+                                                        </div>
+                                                        <strong>PTテスト</strong> 
                                                     </p>
                                                     <div className="mb-2 flex">
                                                         <button
@@ -475,7 +479,11 @@ function DataFormDisplay() {
                                             {user && user.qualificationWorking !== "null" && user.qualificationWorking.map((filePath, index) => (
                                                 <div key={index} className="p-6 transition-shadow duration-200 bg-gray-100 rounded-lg shadow hover:shadow-lg w-full">
                                                     <p className="mb-2">
-                                                        <strong>Qualification - Working {index + 1}<br></br> 働く資格</strong>
+                                                    <div className="flex justify-between">
+                                                            <strong>Qualification - Working {index + 1} </strong>
+                                                            <FaVideo/>
+                                                        </div>
+                                                        <strong>働く資格</strong> 
                                                     </p>
                                                     <div className="mb-2 flex">
                                                         <button

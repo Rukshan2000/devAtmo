@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FaUser, FaLock } from 'react-icons/fa'; // Import icons for username and password
+import { GrMultiple } from "react-icons/gr";
 
 const LoginPage = () => {
     const [username, setUsername] = useState('');
